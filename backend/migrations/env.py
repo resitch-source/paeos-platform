@@ -1,0 +1,76 @@
+"""Alembic environment for PAEOS-FX.
+
+Resolves the database URL from application settings, targets the platform
+metadata (with all models registered), and manages the ``platform`` schema.
+"""
+
+from __future__ import annotations
+
+from logging.config import fileConfig
+
+from alembic import context
+from sqlalchemy import engine_from_config, pool
+
+from paeos_fx.core.config import get_settings
+from paeos_fx.db.base import PLATFORM_SCHEMA, metadata
+from paeos_fx.db.registry import TENANT_OWNED_TABLES  # noqa: F401 (ensures models load)
+
+config = context.config
+
+if config.config_file_name is not None:
+    fileConfig(config.config_file_name)
+
+# Inject the runtime database URL.
+config.set_main_option("sqlalchemy.url", get_settings().database_url)
+
+target_metadata = metadata
+
+
+def _include_object(obj, name, type_, reflected, compare_to) -> bool:
+    # Keep PostGIS-managed objects out of autogenerate noise.
+    if type_ == "table" and name in {"spatial_ref_sys"}:
+        return False
+    return True
+
+
+def run_migrations_offline() -> None:
+    context.configure(
+        url=config.get_main_option("sqlalchemy.url"),
+        target_metadata=target_metadata,
+        literal_binds=True,
+        include_schemas=True,
+        version_table_schema=PLATFORM_SCHEMA,
+        include_object=_include_object,
+        dialect_opts={"paramstyle": "named"},
+    )
+    with context.begin_transaction():
+        context.run_migrations()
+
+
+def run_migrations_online() -> None:
+    connectable = engine_from_config(
+        config.get_section(config.config_ini_section, {}),
+        prefix="sqlalchemy.",
+        poolclass=pool.NullPool,
+    )
+    with connectable.connect() as connection:
+        # The platform schema must exist before Alembic creates its version
+        # table there. This is idempotent and non-destructive.
+        connection.exec_driver_sql(
+            f"CREATE SCHEMA IF NOT EXISTS {PLATFORM_SCHEMA}"
+        )
+        context.configure(
+            connection=connection,
+            target_metadata=target_metadata,
+            include_schemas=True,
+            version_table_schema=PLATFORM_SCHEMA,
+            include_object=_include_object,
+        )
+        with context.begin_transaction():
+            context.run_migrations()
+
+
+if context.is_offline_mode():
+    run_migrations_offline()
+else:
+    run_migrations_online()
