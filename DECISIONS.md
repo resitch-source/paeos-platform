@@ -59,3 +59,23 @@ Decisions are immutable once recorded. Changes are appended as new entries.
 - **Decision:** AI access is mediated: AI → Authorized Tool → Domain Service →
   Business Validation → Transaction → Audit Log. No direct DB access for AI.
 - **Status:** ACCEPTED (mandated by controller rules).
+
+## ADR-0011 — Versioning & changelog
+- **Decision:** Semantic Versioning (`MAJOR.MINOR.PATCH`); Keep a Changelog
+  format in `CHANGELOG.md`; phase completions tagged `phase-<n>-complete`. The
+  Foundation baseline is `0.1.0`.
+- **Status:** ACCEPTED (Phase 0).
+
+## ADR-0012 — Branch protection stance
+- **Decision:** Branch-protection rules for `main` (require PR + green CI,
+  disallow force-push/deletion, review for gated changes) are documented as
+  recommendations in `docs/BRANCHING.md`. They are applied by a repository
+  admin, not by automated/controller work, because changing branch protection
+  is outside the automated action scope.
+- **Status:** ACCEPTED (Phase 0). Enforcement pending repo-admin action.
+
+## ADR-0013 — SessionStart hook
+- **Decision:** A synchronous `SessionStart` hook provisions the backend venv
+  in Claude Code on the web so tests/linters are runnable. Remote-only,
+  idempotent. Effective for sessions after it lands on the default branch.
+- **Status:** ACCEPTED (Phase 0).

@@ -1,15 +1,15 @@
 # PAEOS — Project Status
 
 **Last updated:** 2026-09-05
-**Active stage:** PAEOS-FX Foundation — IMPLEMENT / TEST
+**Active stage:** Phase 0 — Project Governance — IMPLEMENT / TEST
 **Branch:** `claude/paeos-repo-inspection-t9kf9j`
 
 ## Phase ledger
 
 | Phase | Name                                             | Status        |
 |-------|--------------------------------------------------|---------------|
-| FX    | PAEOS-FX Foundation                              | IN PROGRESS   |
-| 0     | Project Governance                               | NOT STARTED   |
+| FX    | PAEOS-FX Foundation                              | COMPLETE      |
+| 0     | Project Governance                               | IN PROGRESS   |
 | 1     | Enterprise Core                                  | NOT STARTED   |
 | 2     | Agriculture Master Data + GIS                    | NOT STARTED   |
 | 3     | Crop Production + Crop Simulation                | NOT STARTED   |
@@ -24,12 +24,15 @@
 | 12    | IoT + Integrations + Security + Prod Hardening   | NOT STARTED   |
 | 13    | Commercialization + Customer Deployment          | NOT STARTED   |
 
-## Foundation scope (this stage)
-Horizontal framework only. No domain logic. Future phases are represented by
-minimum stable interfaces (AI, simulation, digital twin, integration).
+## Current stage scope (Phase 0)
+Project governance only — contribution/branch policy, ownership, security
+policy, templates, developer tooling (pre-commit), SessionStart hook, and
+governance ledgers. No application code, no DB changes, no future-phase work.
 
 ## Gates
 - G1 Foundation Plan Approval — **APPROVED** (2026-09-05)
-- Release approval — pending
-- Commit approval — pending
-- Next-phase (Phase 0) approval — pending
+- Foundation Release (#15) — **APPROVED**
+- Foundation Commit (#16) — **APPROVED** → committed `d87de56`, pushed to branch
+- Start Phase 0 (#17) — **APPROVED**
+- Phase 0 Plan Approval — **APPROVED**
+- Phase 0 Release / Commit — pending

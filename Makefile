@@ -48,5 +48,9 @@ up: ## Start the full dev stack in Docker
 down: ## Stop the dev stack
 	cd infra && docker compose down
 
+.PHONY: precommit
+precommit: ## Run all pre-commit hooks across the repo
+	pre-commit run --all-files
+
 .PHONY: check
 check: lint typecheck test ## Run lint + typecheck + tests
