@@ -55,3 +55,22 @@ Released, committed (`ec3b22a`), and pushed.
 - Tests: 5 auth/RBAC guard unit tests; 5 integration tests (onboarding, auth,
   RBAC, CRUD, tenant isolation) validated on PostgreSQL 16.
 - ruff + mypy clean; 49 unit tests pass. No GIS/agriculture/future-phase work.
+
+Released, committed (`0c219c3`), and pushed.
+
+## 2026-09-05 — Phase 2 — Agriculture Master Data + GIS
+- Agriculture master data on the master-data framework: crop categories, crops,
+  crop varieties, soil types, land-use types (structure/classification only).
+- PostGIS geospatial entities (EPSG:4326): administrative areas, farms (point),
+  land parcels (polygon) with GiST spatial indexes; GeoJSON import via
+  `ST_GeomFromGeoJSON`; parcel area derived with `ST_Area` and classified.
+- Generic `MasterDataService` + `FarmService`/`ParcelService` on the Phase 1
+  service/repository pattern; REST endpoints (tenant-scoped, RBAC, audited).
+- Permission catalog extended (agri.masterdata/farm/parcel) and granted to
+  `TENANT_ADMIN`.
+- Migration `0003_agri_masterdata_gis` (additive: 8 tables + RLS + GiST);
+  chain validated 0001→0002→0003.
+- Tests: 6 GeoJSON-validation unit tests; master-data CRUD + isolation
+  validated on PostgreSQL 16; farm/parcel GIS + isolation gated on PostGIS
+  (CI). 55 unit tests pass; ruff + mypy clean.
+- No-fabrication upheld: no agronomic coefficients or geometries invented.

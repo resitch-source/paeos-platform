@@ -7,6 +7,20 @@ adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- **Phase 2 — Agriculture Master Data + GIS:**
+  - Reference/master data on the master-data framework: crop categories, crops,
+    crop varieties, soil types, land-use types (structure/classification only —
+    no fabricated agronomic values).
+  - PostGIS geospatial entities (EPSG:4326): administrative areas, farms
+    (point), and land parcels (polygon) with GiST spatial indexes; geometry
+    imported as GeoJSON via `ST_GeomFromGeoJSON`.
+  - Derived parcel area computed with `ST_Area` and recorded with an explicit
+    provenance classification (never fabricated).
+  - Services + REST endpoints (tenant-scoped, permission-guarded, audited);
+    new permission catalog entries granted to `TENANT_ADMIN`.
+  - Migration `0003_agri_masterdata_gis` (additive: 8 tables + RLS + GiST).
+  - Tests: GeoJSON validation (unit); master-data CRUD + isolation (integration,
+    any PostgreSQL); farm/parcel GIS + isolation (integration, PostGIS-gated).
 - **Phase 1 — Enterprise Core:**
   - Authentication (`POST /auth/login`, `GET /auth/me`) implementing the
     approved JWT design; permission-embedding access tokens.

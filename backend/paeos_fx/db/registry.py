@@ -7,6 +7,8 @@ module guarantees every foundation model is imported before autogenerate runs.
 from __future__ import annotations
 
 # noqa: F401 — imports are for side effects (model registration).
+from paeos_fx.agri import gis as _agri_gis  # noqa: F401
+from paeos_fx.agri import masterdata as _agri_masterdata  # noqa: F401
 from paeos_fx.platform import approval as _approval  # noqa: F401
 from paeos_fx.platform import audit as _audit  # noqa: F401
 from paeos_fx.platform import documents as _documents  # noqa: F401
@@ -34,4 +36,12 @@ TENANT_OWNED_TABLES: tuple[str, ...] = (
     "document",
     "notification",
     "org_unit",
+    "agri_crop_category",
+    "agri_crop",
+    "agri_crop_variety",
+    "agri_soil_type",
+    "agri_land_use_type",
+    "agri_admin_area",
+    "agri_farm",
+    "agri_land_parcel",
 )
