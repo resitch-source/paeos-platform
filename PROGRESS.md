@@ -94,3 +94,21 @@ Released, committed (`6d5b3ed`), and pushed.
   (FK-closed plain-table subset; PostGIS skip + %-escaping in the RLS test).
 - 61 unit tests pass; master-data + enterprise integration validated on
   PostgreSQL 16; ruff + mypy clean.
+
+Released, committed (`83895b6`), and pushed.
+
+## 2026-09-05 — Phase 4 — Livestock + Poultry
+- Livestock master data (species, breeds) on the master-data framework.
+- Animal groups (herds/flocks) with a Foundation state-machine lifecycle
+  (established→active→closed); production, mortality (decrements head count,
+  never below 0), and health-event records — quantities caller-supplied and
+  classified.
+- AnimalGroupService + generic MasterDataService; REST endpoints
+  (species/breeds, animal-groups + transitions + records); permission catalog
+  extended (livestock.*) and granted to TENANT_ADMIN.
+- Migration `0005_livestock` (additive: 6 tables + RLS); chain validated
+  0001→…→0005.
+- Tests: animal-group lifecycle (unit); species/breed master-data + isolation
+  validated on PostgreSQL 16; animal-group records + isolation PostGIS-gated
+  (farm FK). 64 unit tests pass; ruff + mypy clean.
+- No-fabrication upheld: no biological coefficients invented.

@@ -10,6 +10,8 @@ from __future__ import annotations
 from paeos_fx.agri import gis as _agri_gis  # noqa: F401
 from paeos_fx.agri import masterdata as _agri_masterdata  # noqa: F401
 from paeos_fx.agri import production as _agri_production  # noqa: F401
+from paeos_fx.livestock import masterdata as _lv_masterdata  # noqa: F401
+from paeos_fx.livestock import models as _lv_models  # noqa: F401
 from paeos_fx.platform import approval as _approval  # noqa: F401
 from paeos_fx.platform import audit as _audit  # noqa: F401
 from paeos_fx.platform import documents as _documents  # noqa: F401
@@ -49,4 +51,10 @@ TENANT_OWNED_TABLES: tuple[str, ...] = (
     "growth_observation",
     "harvest_record",
     "simulation_run",
+    "livestock_species",
+    "livestock_breed",
+    "animal_group",
+    "animal_production_record",
+    "animal_mortality_record",
+    "animal_health_event",
 )

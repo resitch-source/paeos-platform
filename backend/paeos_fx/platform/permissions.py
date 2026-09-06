@@ -33,6 +33,13 @@ AGRI_PRODUCTION_READ = "agri.production.read"
 AGRI_PRODUCTION_WRITE = "agri.production.write"
 AGRI_SIMULATION_RUN = "agri.simulation.run"
 
+# Livestock + poultry (Phase 4).
+LIVESTOCK_MASTERDATA_READ = "livestock.masterdata.read"
+LIVESTOCK_MASTERDATA_MANAGE = "livestock.masterdata.manage"
+LIVESTOCK_GROUP_READ = "livestock.group.read"
+LIVESTOCK_GROUP_WRITE = "livestock.group.write"
+LIVESTOCK_RECORD_WRITE = "livestock.record.write"
+
 # Full catalog seeded per environment.
 ENTERPRISE_CORE_PERMISSIONS: dict[str, str] = {
     PLATFORM_TENANT_PROVISION: "Provision new tenants (platform administrators).",
@@ -51,6 +58,11 @@ ENTERPRISE_CORE_PERMISSIONS: dict[str, str] = {
     AGRI_PRODUCTION_READ: "Read cropping cycles and harvests.",
     AGRI_PRODUCTION_WRITE: "Create/advance cropping cycles and record harvests.",
     AGRI_SIMULATION_RUN: "Run crop simulations.",
+    LIVESTOCK_MASTERDATA_READ: "Read livestock species/breeds.",
+    LIVESTOCK_MASTERDATA_MANAGE: "Create and modify livestock master data.",
+    LIVESTOCK_GROUP_READ: "Read animal groups (herds/flocks).",
+    LIVESTOCK_GROUP_WRITE: "Create and advance animal groups.",
+    LIVESTOCK_RECORD_WRITE: "Record production, mortality, and health events.",
 }
 
 # Permissions granted to the seeded TENANT_ADMIN system role (tenant-scoped;
@@ -71,6 +83,11 @@ TENANT_ADMIN_PERMISSIONS: tuple[str, ...] = (
     AGRI_PRODUCTION_READ,
     AGRI_PRODUCTION_WRITE,
     AGRI_SIMULATION_RUN,
+    LIVESTOCK_MASTERDATA_READ,
+    LIVESTOCK_MASTERDATA_MANAGE,
+    LIVESTOCK_GROUP_READ,
+    LIVESTOCK_GROUP_WRITE,
+    LIVESTOCK_RECORD_WRITE,
 )
 
 TENANT_ADMIN_ROLE_CODE = "TENANT_ADMIN"

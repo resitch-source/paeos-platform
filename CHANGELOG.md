@@ -7,6 +7,19 @@ adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- **Phase 4 — Livestock + Poultry:**
+  - Livestock master data (species, breeds) on the master-data framework.
+  - Animal groups (herds/flocks) with a Foundation state-machine lifecycle
+    (established→active→closed), plus production, mortality, and health-event
+    records — quantities are caller-supplied and classified; no biological
+    coefficients are fabricated. Mortality decrements head count (never below 0).
+  - Services + REST endpoints (species/breeds, animal-groups + transitions +
+    production/mortality/health records); permission catalog extended and
+    granted to TENANT_ADMIN.
+  - Migration `0005_livestock` (additive: 6 tables + RLS).
+  - Tests: animal-group lifecycle (unit); species/breed master-data + isolation
+    (any PostgreSQL); animal-group records + isolation (PostGIS-gated via the
+    farm FK).
 - **Phase 3 — Crop Production + Crop Simulation:**
   - Crop production models: cropping cycles (with a Foundation state-machine
     lifecycle planned→planted→growing→harvested→closed), growth observations,
