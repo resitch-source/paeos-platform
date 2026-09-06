@@ -149,3 +149,25 @@ Released, committed (`1de6ed7`), and pushed.
 - Tests: Money line-total math (unit); full inventory service, PO lifecycle +
   receipt-into-stock, monetary totals, and tenant isolation — all validated on
   PostgreSQL 16 (non-geometry). 69 unit tests pass; ruff + mypy clean.
+
+Released, committed (`9182777`), and pushed.
+
+## 2026-09-05 — Phase 7 — Processing + MES + Coconut Oil Digital Twin
+- MES: process definitions (recipes), production runs, quality checks.
+  Completing a run consumes inputs and produces outputs THROUGH the central
+  InventoryService (fails closed on insufficient stock).
+- Coconut-oil digital twin (ADVISORY, non-actuating): processing assets +
+  telemetry, twin state from latest readings, and a transparent mass-balance
+  simulation (output = input × yield_fraction, both caller-supplied), recorded
+  with a CalculationRecord classified SIMULATION.
+- SAFETY (gates #13/#14): no autonomous control path; the twin's control channel
+  routes only through guard_control (refuses without human approval) and never
+  actuates. No coefficients/equipment specs fabricated.
+- Services + REST endpoints; permission catalog extended (no machinery-control
+  permission by design) and granted to TENANT_ADMIN.
+- Migration `0008_processing_mes` (additive: 7 tables + RLS, no geometry);
+  chain validated 0001→…→0008.
+- Tests: mass-balance math + provenance and the safety control-guard (unit);
+  production run consume/produce via central inventory, telemetry twin state,
+  and tenant isolation validated on PostgreSQL 16. 74 unit tests pass; ruff +
+  mypy clean.

@@ -25,6 +25,7 @@ from paeos_fx.api.v1 import (
     livestock_masterdata,
     org_units,
     parcels,
+    processing,
     procurement,
     roles,
     users,
@@ -49,6 +50,7 @@ api_router.include_router(fisheries_masterdata.router)
 api_router.include_router(aqua_cycles.router)
 api_router.include_router(inventory.router)
 api_router.include_router(procurement.router)
+api_router.include_router(processing.router)
 
 
 @api_router.get("/meta", tags=["meta"])
@@ -58,6 +60,6 @@ async def meta() -> dict:
         "product": "PAEOS",
         "component": "PAEOS-FX Foundation",
         "version": __version__,
-        "active_phase": "PHASE_6_INVENTORY_PROCUREMENT_WAREHOUSE",
-        "domain_phases_started": [1, 2, 3, 4, 5, 6],
+        "active_phase": "PHASE_7_PROCESSING_MES_TWIN",
+        "domain_phases_started": [1, 2, 3, 4, 5, 6, 7],
     }

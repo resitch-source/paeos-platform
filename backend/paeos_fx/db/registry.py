@@ -25,6 +25,7 @@ from paeos_fx.platform import numbering as _numbering  # noqa: F401
 from paeos_fx.platform import org as _org  # noqa: F401
 from paeos_fx.platform import tenancy as _tenancy  # noqa: F401
 from paeos_fx.platform import workflow as _workflow  # noqa: F401
+from paeos_fx.processing import models as _proc_mes_models  # noqa: F401
 from paeos_fx.procurement import models as _proc_models  # noqa: F401
 
 # Tenant-owned tables subject to Row-Level Security policies.
@@ -75,4 +76,11 @@ TENANT_OWNED_TABLES: tuple[str, ...] = (
     "supplier",
     "purchase_order",
     "purchase_order_line",
+    "process_definition",
+    "process_input",
+    "process_output",
+    "production_run",
+    "quality_check",
+    "processing_asset",
+    "asset_telemetry",
 )

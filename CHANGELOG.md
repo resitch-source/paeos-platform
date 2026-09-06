@@ -7,6 +7,25 @@ adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- **Phase 7 — Processing + MES + Coconut Oil Digital Twin:**
+  - Manufacturing execution: process definitions (recipes with tenant-defined
+    input/output quantities), production runs with a lifecycle, and quality
+    checks. Completing a run consumes inputs and produces outputs THROUGH the
+    central `InventoryService` (fails closed on insufficient stock).
+  - Coconut-oil digital twin (ADVISORY, non-actuating): processing assets +
+    telemetry, twin state derived from the latest readings, and a transparent
+    mass-balance simulation (`output = input × yield_fraction`, both
+    caller-supplied) recorded with a `CalculationRecord` classified SIMULATION.
+  - SAFETY: no autonomous machinery-control path exists; the twin's control
+    channel routes only through `guard_control` (refuses without human approval)
+    and performs no actuation. No coefficients or equipment specs are fabricated.
+  - Services + REST endpoints (recipes, runs, quality, assets/telemetry, twin
+    state, mass-balance simulation); permission catalog extended (no
+    machinery-control permission by design) and granted to TENANT_ADMIN.
+  - Migration `0008_processing_mes` (additive: 7 tables + RLS, no geometry).
+  - Tests: mass-balance math + provenance and the safety control-guard (unit);
+    production run consume/produce via central inventory, telemetry twin state,
+    and tenant isolation (integration).
 - **Phase 6 — Inventory + Procurement + Warehouse:**
   - Central `InventoryService` — the single authorized, audited path for stock
     changes: item master, warehouses/storage locations, stock levels, and a

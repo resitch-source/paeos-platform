@@ -62,6 +62,18 @@ PROCUREMENT_PO_WRITE = "procurement.po.write"
 PROCUREMENT_PO_APPROVE = "procurement.po.approve"
 PROCUREMENT_PO_RECEIVE = "procurement.po.receive"
 
+# Processing + MES + digital twin (Phase 7). No machinery-control permission
+# exists by design — the twin is advisory only.
+PROCESSING_DEFINITION_READ = "processing.definition.read"
+PROCESSING_DEFINITION_MANAGE = "processing.definition.manage"
+PROCESSING_RUN_READ = "processing.run.read"
+PROCESSING_RUN_WRITE = "processing.run.write"
+PROCESSING_QUALITY_WRITE = "processing.quality.write"
+PROCESSING_ASSET_READ = "processing.asset.read"
+PROCESSING_ASSET_MANAGE = "processing.asset.manage"
+PROCESSING_TELEMETRY_WRITE = "processing.telemetry.write"
+PROCESSING_SIMULATION_RUN = "processing.simulation.run"
+
 # Full catalog seeded per environment.
 ENTERPRISE_CORE_PERMISSIONS: dict[str, str] = {
     PLATFORM_TENANT_PROVISION: "Provision new tenants (platform administrators).",
@@ -103,6 +115,15 @@ ENTERPRISE_CORE_PERMISSIONS: dict[str, str] = {
     PROCUREMENT_PO_WRITE: "Create and edit purchase orders.",
     PROCUREMENT_PO_APPROVE: "Submit/approve/cancel purchase orders.",
     PROCUREMENT_PO_RECEIVE: "Receive purchase orders into stock.",
+    PROCESSING_DEFINITION_READ: "Read process definitions (recipes).",
+    PROCESSING_DEFINITION_MANAGE: "Create and modify process definitions.",
+    PROCESSING_RUN_READ: "Read production runs.",
+    PROCESSING_RUN_WRITE: "Create, start, and complete production runs.",
+    PROCESSING_QUALITY_WRITE: "Record quality checks.",
+    PROCESSING_ASSET_READ: "Read processing assets and twin state.",
+    PROCESSING_ASSET_MANAGE: "Create and modify processing assets.",
+    PROCESSING_TELEMETRY_WRITE: "Ingest processing-asset telemetry.",
+    PROCESSING_SIMULATION_RUN: "Run processing (mass-balance) simulations.",
 }
 
 # Permissions granted to the seeded TENANT_ADMIN system role (tenant-scoped;
@@ -146,6 +167,15 @@ TENANT_ADMIN_PERMISSIONS: tuple[str, ...] = (
     PROCUREMENT_PO_WRITE,
     PROCUREMENT_PO_APPROVE,
     PROCUREMENT_PO_RECEIVE,
+    PROCESSING_DEFINITION_READ,
+    PROCESSING_DEFINITION_MANAGE,
+    PROCESSING_RUN_READ,
+    PROCESSING_RUN_WRITE,
+    PROCESSING_QUALITY_WRITE,
+    PROCESSING_ASSET_READ,
+    PROCESSING_ASSET_MANAGE,
+    PROCESSING_TELEMETRY_WRITE,
+    PROCESSING_SIMULATION_RUN,
 )
 
 TENANT_ADMIN_ROLE_CODE = "TENANT_ADMIN"
