@@ -13,10 +13,12 @@ from paeos_fx.api.v1 import (
     admin_tenants,
     agri_masterdata,
     animal_groups,
+    aqua_cycles,
     auth,
     crop_simulations,
     cropping_cycles,
     farms,
+    fisheries_masterdata,
     harvests,
     health,
     livestock_masterdata,
@@ -41,6 +43,8 @@ api_router.include_router(harvests.router)
 api_router.include_router(crop_simulations.router)
 api_router.include_router(livestock_masterdata.router)
 api_router.include_router(animal_groups.router)
+api_router.include_router(fisheries_masterdata.router)
+api_router.include_router(aqua_cycles.router)
 
 
 @api_router.get("/meta", tags=["meta"])
@@ -50,6 +54,6 @@ async def meta() -> dict:
         "product": "PAEOS",
         "component": "PAEOS-FX Foundation",
         "version": __version__,
-        "active_phase": "PHASE_4_LIVESTOCK_POULTRY",
-        "domain_phases_started": [1, 2, 3, 4],
+        "active_phase": "PHASE_5_FISHERIES_AQUACULTURE",
+        "domain_phases_started": [1, 2, 3, 4, 5],
     }

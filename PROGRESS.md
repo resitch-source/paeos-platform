@@ -112,3 +112,21 @@ Released, committed (`83895b6`), and pushed.
   validated on PostgreSQL 16; animal-group records + isolation PostGIS-gated
   (farm FK). 64 unit tests pass; ruff + mypy clean.
 - No-fabrication upheld: no biological coefficients invented.
+
+Released, committed (`e285105`), and pushed.
+
+## 2026-09-05 — Phase 5 — Fisheries + Aquaculture
+- Aquatic species master data; culture units (ponds/cages/tanks) with PostGIS
+  point location (GeoJSON import, GiST index); aquaculture cycles with a
+  state-machine lifecycle (stocked→growing→harvested→closed); water-quality,
+  harvest, and mortality records — quantities caller-supplied and classified;
+  mortality decrements stocking count (never below 0).
+- CultureUnitService / AquacultureCycleService / WaterQualityService on the
+  established pattern; REST endpoints; permission catalog extended (fisheries.*)
+  and granted to TENANT_ADMIN.
+- Migration `0006_fisheries` (additive: 6 tables + RLS + GiST); chain validated
+  0001→…→0006.
+- Tests: cycle lifecycle (unit); species master-data + isolation validated on
+  PostgreSQL 16; culture-unit/cycle/records + isolation PostGIS-gated. 66 unit
+  tests pass; ruff + mypy clean.
+- No-fabrication upheld: no biological/water-quality coefficients invented.

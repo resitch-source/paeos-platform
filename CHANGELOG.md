@@ -7,6 +7,19 @@ adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- **Phase 5 — Fisheries + Aquaculture:**
+  - Aquatic species master data; culture units (ponds/cages/tanks) with PostGIS
+    point location (EPSG:4326, GiST index, GeoJSON import); aquaculture cycles
+    with a state-machine lifecycle (stocked→growing→harvested→closed); and
+    water-quality, harvest, and mortality records.
+  - Quantities are caller-supplied and classified; mortality decrements stocking
+    count (never below 0). No fabricated biological/water-quality coefficients.
+  - Services + REST endpoints (species, culture-units, cycles + transitions,
+    harvest/mortality/water-quality); permission catalog extended and granted to
+    TENANT_ADMIN.
+  - Migration `0006_fisheries` (additive: 6 tables + RLS + GiST).
+  - Tests: cycle lifecycle (unit); species master-data + isolation (any
+    PostgreSQL); culture-unit/cycle/records + isolation (PostGIS-gated).
 - **Phase 4 — Livestock + Poultry:**
   - Livestock master data (species, breeds) on the master-data framework.
   - Animal groups (herds/flocks) with a Foundation state-machine lifecycle

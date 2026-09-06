@@ -40,6 +40,15 @@ LIVESTOCK_GROUP_READ = "livestock.group.read"
 LIVESTOCK_GROUP_WRITE = "livestock.group.write"
 LIVESTOCK_RECORD_WRITE = "livestock.record.write"
 
+# Fisheries + aquaculture (Phase 5).
+FISHERIES_MASTERDATA_READ = "fisheries.masterdata.read"
+FISHERIES_MASTERDATA_MANAGE = "fisheries.masterdata.manage"
+FISHERIES_UNIT_READ = "fisheries.unit.read"
+FISHERIES_UNIT_WRITE = "fisheries.unit.write"
+FISHERIES_CYCLE_READ = "fisheries.cycle.read"
+FISHERIES_CYCLE_WRITE = "fisheries.cycle.write"
+FISHERIES_RECORD_WRITE = "fisheries.record.write"
+
 # Full catalog seeded per environment.
 ENTERPRISE_CORE_PERMISSIONS: dict[str, str] = {
     PLATFORM_TENANT_PROVISION: "Provision new tenants (platform administrators).",
@@ -63,6 +72,13 @@ ENTERPRISE_CORE_PERMISSIONS: dict[str, str] = {
     LIVESTOCK_GROUP_READ: "Read animal groups (herds/flocks).",
     LIVESTOCK_GROUP_WRITE: "Create and advance animal groups.",
     LIVESTOCK_RECORD_WRITE: "Record production, mortality, and health events.",
+    FISHERIES_MASTERDATA_READ: "Read aquatic species.",
+    FISHERIES_MASTERDATA_MANAGE: "Create and modify fisheries master data.",
+    FISHERIES_UNIT_READ: "Read culture units (ponds/cages/tanks).",
+    FISHERIES_UNIT_WRITE: "Create and modify culture units.",
+    FISHERIES_CYCLE_READ: "Read aquaculture cycles.",
+    FISHERIES_CYCLE_WRITE: "Create and advance aquaculture cycles.",
+    FISHERIES_RECORD_WRITE: "Record water quality, harvests, and mortality.",
 }
 
 # Permissions granted to the seeded TENANT_ADMIN system role (tenant-scoped;
@@ -88,6 +104,13 @@ TENANT_ADMIN_PERMISSIONS: tuple[str, ...] = (
     LIVESTOCK_GROUP_READ,
     LIVESTOCK_GROUP_WRITE,
     LIVESTOCK_RECORD_WRITE,
+    FISHERIES_MASTERDATA_READ,
+    FISHERIES_MASTERDATA_MANAGE,
+    FISHERIES_UNIT_READ,
+    FISHERIES_UNIT_WRITE,
+    FISHERIES_CYCLE_READ,
+    FISHERIES_CYCLE_WRITE,
+    FISHERIES_RECORD_WRITE,
 )
 
 TENANT_ADMIN_ROLE_CODE = "TENANT_ADMIN"
