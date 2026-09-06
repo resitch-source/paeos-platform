@@ -74,6 +74,17 @@ PROCESSING_ASSET_MANAGE = "processing.asset.manage"
 PROCESSING_TELEMETRY_WRITE = "processing.telemetry.write"
 PROCESSING_SIMULATION_RUN = "processing.simulation.run"
 
+# Marketplace + trading + logistics (Phase 8). Trading pricing is financial (#12).
+MARKETPLACE_LISTING_READ = "marketplace.listing.read"
+MARKETPLACE_LISTING_MANAGE = "marketplace.listing.manage"
+TRADING_CUSTOMER_MANAGE = "trading.customer.manage"
+TRADING_ORDER_READ = "trading.order.read"
+TRADING_ORDER_WRITE = "trading.order.write"
+TRADING_ORDER_CONFIRM = "trading.order.confirm"
+TRADING_ORDER_FULFILL = "trading.order.fulfill"
+LOGISTICS_SHIPMENT_READ = "logistics.shipment.read"
+LOGISTICS_SHIPMENT_WRITE = "logistics.shipment.write"
+
 # Full catalog seeded per environment.
 ENTERPRISE_CORE_PERMISSIONS: dict[str, str] = {
     PLATFORM_TENANT_PROVISION: "Provision new tenants (platform administrators).",
@@ -124,6 +135,15 @@ ENTERPRISE_CORE_PERMISSIONS: dict[str, str] = {
     PROCESSING_ASSET_MANAGE: "Create and modify processing assets.",
     PROCESSING_TELEMETRY_WRITE: "Ingest processing-asset telemetry.",
     PROCESSING_SIMULATION_RUN: "Run processing (mass-balance) simulations.",
+    MARKETPLACE_LISTING_READ: "Read marketplace listings.",
+    MARKETPLACE_LISTING_MANAGE: "Create and modify marketplace listings.",
+    TRADING_CUSTOMER_MANAGE: "Manage customers.",
+    TRADING_ORDER_READ: "Read sales orders.",
+    TRADING_ORDER_WRITE: "Create and edit sales orders.",
+    TRADING_ORDER_CONFIRM: "Confirm/cancel sales orders.",
+    TRADING_ORDER_FULFILL: "Fulfill sales orders from stock.",
+    LOGISTICS_SHIPMENT_READ: "Read shipments.",
+    LOGISTICS_SHIPMENT_WRITE: "Create and advance shipments.",
 }
 
 # Permissions granted to the seeded TENANT_ADMIN system role (tenant-scoped;
@@ -176,6 +196,15 @@ TENANT_ADMIN_PERMISSIONS: tuple[str, ...] = (
     PROCESSING_ASSET_MANAGE,
     PROCESSING_TELEMETRY_WRITE,
     PROCESSING_SIMULATION_RUN,
+    MARKETPLACE_LISTING_READ,
+    MARKETPLACE_LISTING_MANAGE,
+    TRADING_CUSTOMER_MANAGE,
+    TRADING_ORDER_READ,
+    TRADING_ORDER_WRITE,
+    TRADING_ORDER_CONFIRM,
+    TRADING_ORDER_FULFILL,
+    LOGISTICS_SHIPMENT_READ,
+    LOGISTICS_SHIPMENT_WRITE,
 )
 
 TENANT_ADMIN_ROLE_CODE = "TENANT_ADMIN"

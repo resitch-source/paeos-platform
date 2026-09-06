@@ -15,6 +15,7 @@ from paeos_fx.fisheries import models as _fish_models  # noqa: F401
 from paeos_fx.inventory import models as _inv_models  # noqa: F401
 from paeos_fx.livestock import masterdata as _lv_masterdata  # noqa: F401
 from paeos_fx.livestock import models as _lv_models  # noqa: F401
+from paeos_fx.logistics import models as _log_models  # noqa: F401
 from paeos_fx.platform import approval as _approval  # noqa: F401
 from paeos_fx.platform import audit as _audit  # noqa: F401
 from paeos_fx.platform import documents as _documents  # noqa: F401
@@ -27,6 +28,7 @@ from paeos_fx.platform import tenancy as _tenancy  # noqa: F401
 from paeos_fx.platform import workflow as _workflow  # noqa: F401
 from paeos_fx.processing import models as _proc_mes_models  # noqa: F401
 from paeos_fx.procurement import models as _proc_models  # noqa: F401
+from paeos_fx.trading import models as _trading_models  # noqa: F401
 
 # Tenant-owned tables subject to Row-Level Security policies.
 TENANT_OWNED_TABLES: tuple[str, ...] = (
@@ -83,4 +85,9 @@ TENANT_OWNED_TABLES: tuple[str, ...] = (
     "quality_check",
     "processing_asset",
     "asset_telemetry",
+    "customer",
+    "listing",
+    "sales_order",
+    "sales_order_line",
+    "shipment",
 )

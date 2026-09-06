@@ -1,7 +1,7 @@
 # PAEOS — Project Status
 
 **Last updated:** 2026-09-05
-**Active stage:** Phase 7 — Processing + MES + Coconut Oil Digital Twin — IMPLEMENT / TEST
+**Active stage:** Phase 8 — Marketplace + Trading + Logistics — IMPLEMENT / TEST
 **Branch:** `claude/paeos-repo-inspection-t9kf9j`
 
 ## Phase ledger
@@ -16,7 +16,8 @@
 | 4     | Livestock + Poultry                              | COMPLETE      |
 | 5     | Fisheries + Aquaculture                          | COMPLETE      |
 | 6     | Inventory + Procurement + Warehouse              | COMPLETE      |
-| 7     | Processing + MES + Coconut Oil Digital Twin      | IN PROGRESS   |
+| 7     | Processing + MES + Coconut Oil Digital Twin      | COMPLETE      |
+| 8     | Marketplace + Trading + Logistics                | IN PROGRESS   |
 | 6     | Inventory + Procurement + Warehouse              | NOT STARTED   |
 | 7     | Processing + MES + Coconut Oil Digital Twin      | NOT STARTED   |
 | 8     | Marketplace + Trading + Logistics                | NOT STARTED   |
@@ -26,11 +27,11 @@
 | 12    | IoT + Integrations + Security + Prod Hardening   | NOT STARTED   |
 | 13    | Commercialization + Customer Deployment          | NOT STARTED   |
 
-## Current stage scope (Phase 7)
-Manufacturing execution (recipes, production runs consuming/producing stock via
-the central inventory service, quality checks) and an ADVISORY coconut-oil
-digital twin (telemetry, state, mass-balance simulation). No autonomous
-machinery control (twin control is inert/gated). No fabricated coefficients.
+## Current stage scope (Phase 8)
+Marketplace listings, customers, sales orders (line pricing via Money) that
+fulfill by posting stock OUT through the central inventory service, and shipment
+records. No payments/AR/GL/tax; logistics is records-only (no carrier
+integration). Financial transaction logic approved under gate #12.
 
 ## Gates
 - G1 Foundation Plan Approval — **APPROVED** (2026-09-05)
@@ -42,6 +43,7 @@ machinery control (twin control is inert/gated). No fabricated coefficients.
 - Phase 4 Start/Plan/Release/Commit — **APPROVED** → `e285105`, pushed
 - Phase 5 Start/Plan/Release/Commit — **APPROVED** → `1de6ed7`, pushed
 - Phase 6 Start/Plan/Release/Commit (incl. financial #12) — **APPROVED** → `9182777`, pushed
-- Start Phase 7 (#17) — **APPROVED**
-- Phase 7 Plan Approval (safety #13 ack; #14 not implemented) — **APPROVED**
-- Phase 7 Release / Commit — pending
+- Phase 7 Start/Plan/Release/Commit (safety #13; #14 not implemented) — **APPROVED** → `facccf8`, pushed
+- Start Phase 8 (#17) — **APPROVED**
+- Phase 8 Plan Approval (incl. financial #12) — **APPROVED**
+- Phase 8 Release / Commit — pending

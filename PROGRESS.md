@@ -171,3 +171,20 @@ Released, committed (`9182777`), and pushed.
   production run consume/produce via central inventory, telemetry twin state,
   and tenant isolation validated on PostgreSQL 16. 74 unit tests pass; ruff +
   mypy clean.
+
+Released, committed (`facccf8`), and pushed.
+
+## 2026-09-05 — Phase 8 — Marketplace + Trading + Logistics
+- Customers, marketplace listings, sales orders (lifecycle + exact Money line
+  pricing). Fulfilling an order posts stock OUT through the central
+  InventoryService (fails closed on insufficient stock). No tax/GL/payments.
+- Logistics: shipments with a lifecycle (planned→dispatched→delivered),
+  records only (no carrier integration).
+- CustomerService/ListingService/SalesOrderService/ShipmentService; REST
+  endpoints; permission catalog extended and granted to TENANT_ADMIN.
+- Migration `0009_marketplace_trading_logistics` (additive: 5 tables + RLS, no
+  geometry); chain validated 0001→…→0009.
+- Tests: order-total math + lifecycle transitions (unit); order lifecycle +
+  fulfilment via central inventory, shipment flow, and tenant isolation — all
+  validated on PostgreSQL 16 (non-geometry). 78 unit tests pass; ruff + mypy
+  clean.

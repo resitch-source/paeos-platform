@@ -7,6 +7,22 @@ adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- **Phase 8 — Marketplace + Trading + Logistics:**
+  - Customers, marketplace listings, and sales orders with a state-machine
+    lifecycle (draft→confirmed→fulfilled→closed/cancelled) and exact monetary
+    line pricing (Money, integer minor units). Fulfilling an order posts stock
+    OUT THROUGH the central InventoryService (fails closed on insufficient
+    stock). Financial scope is line pricing only — no tax/GL/payments.
+  - Logistics: shipments with a lifecycle (planned→dispatched→delivered),
+    tracking records only — no external carrier integration.
+  - Services + REST endpoints (customers, listings, orders + lines/totals/
+    transitions/fulfill, shipments); permission catalog extended and granted to
+    TENANT_ADMIN.
+  - Migration `0009_marketplace_trading_logistics` (additive: 5 tables + RLS,
+    no geometry).
+  - Tests: order-total math + lifecycle transitions (unit); order lifecycle +
+    fulfilment via the central inventory service, shipment flow, and tenant
+    isolation (integration, any PostgreSQL).
 - **Phase 7 — Processing + MES + Coconut Oil Digital Twin:**
   - Manufacturing execution: process definitions (recipes with tenant-defined
     input/output quantities), production runs with a lifecycle, and quality
