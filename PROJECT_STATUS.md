@@ -1,7 +1,7 @@
 # PAEOS — Project Status
 
 **Last updated:** 2026-09-05
-**Active stage:** Phase 5 — Fisheries + Aquaculture — IMPLEMENT / TEST
+**Active stage:** Phase 6 — Inventory + Procurement + Warehouse — IMPLEMENT / TEST
 **Branch:** `claude/paeos-repo-inspection-t9kf9j`
 
 ## Phase ledger
@@ -14,7 +14,8 @@
 | 2     | Agriculture Master Data + GIS                    | COMPLETE      |
 | 3     | Crop Production + Crop Simulation                | COMPLETE      |
 | 4     | Livestock + Poultry                              | COMPLETE      |
-| 5     | Fisheries + Aquaculture                          | IN PROGRESS   |
+| 5     | Fisheries + Aquaculture                          | COMPLETE      |
+| 6     | Inventory + Procurement + Warehouse              | IN PROGRESS   |
 | 6     | Inventory + Procurement + Warehouse              | NOT STARTED   |
 | 7     | Processing + MES + Coconut Oil Digital Twin      | NOT STARTED   |
 | 8     | Marketplace + Trading + Logistics                | NOT STARTED   |
@@ -24,12 +25,11 @@
 | 12    | IoT + Integrations + Security + Prod Hardening   | NOT STARTED   |
 | 13    | Commercialization + Customer Deployment          | NOT STARTED   |
 
-## Current stage scope (Phase 5)
-Aquatic species reference data and aquaculture operations — culture units
-(PostGIS-located ponds/cages/tanks), cycles, and water-quality/harvest/mortality
-records. No inventory/feed (Phase 6) or other future-phase logic. No fabricated
-biological or water-quality coefficients — quantities are caller-supplied and
-classified.
+## Current stage scope (Phase 6)
+Central inventory/stock-movement service, warehousing, item master, and
+procurement (PO + receipt + line pricing via the Money type). Non-geographic
+(warehouses link to org units). No GL/tax/payments; deeper finance deferred.
+Financial transaction logic approved under gate #12 (ADR-0014).
 
 ## Gates
 - G1 Foundation Plan Approval — **APPROVED** (2026-09-05)
@@ -39,6 +39,7 @@ classified.
 - Phase 2 Start/Plan/Release/Commit — **APPROVED** → `6d5b3ed`, pushed
 - Phase 3 Start/Plan/Release/Commit — **APPROVED** → `83895b6`, pushed
 - Phase 4 Start/Plan/Release/Commit — **APPROVED** → `e285105`, pushed
-- Start Phase 5 (#17) — **APPROVED**
-- Phase 5 Plan Approval — **APPROVED**
-- Phase 5 Release / Commit — pending
+- Phase 5 Start/Plan/Release/Commit — **APPROVED** → `1de6ed7`, pushed
+- Start Phase 6 (#17) — **APPROVED**
+- Phase 6 Plan Approval + Financial (#12) — **APPROVED**
+- Phase 6 Release / Commit — pending

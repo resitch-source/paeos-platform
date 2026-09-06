@@ -7,6 +7,24 @@ adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- **Phase 6 — Inventory + Procurement + Warehouse:**
+  - Central `InventoryService` — the single authorized, audited path for stock
+    changes: item master, warehouses/storage locations, stock levels, and a
+    signed stock-movement ledger; movements, transfers, and a negative-stock
+    guard.
+  - Procurement (financial, approval gate #12): suppliers and purchase orders
+    with a state-machine lifecycle (draft→submitted→approved→received/cancelled)
+    and line pricing via the Foundation `Money` type (integer minor units).
+    Receiving a PO posts stock IN through the central inventory service; no
+    tax/GL/payment logic. Prices/quantities are caller-supplied and exact.
+  - Services + REST endpoints for items, warehouses, movements/transfers, stock
+    queries, suppliers, purchase orders (+ lines, totals, transitions, receive);
+    permission catalog extended and granted to TENANT_ADMIN.
+  - Migration `0007_inventory_procurement` (additive: 8 tables + RLS, no
+    geometry). ADR-0014 records the transactional/financial scope.
+  - Tests: `Money` line-total math (unit); full inventory service, PO
+    lifecycle + receipt-into-stock, and tenant isolation (integration, any
+    PostgreSQL).
 - **Phase 5 — Fisheries + Aquaculture:**
   - Aquatic species master data; culture units (ponds/cages/tanks) with PostGIS
     point location (EPSG:4326, GiST index, GeoJSON import); aquaculture cycles

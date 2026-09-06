@@ -74,6 +74,18 @@ Decisions are immutable once recorded. Changes are appended as new entries.
   is outside the automated action scope.
 - **Status:** ACCEPTED (Phase 0). Enforcement pending repo-admin action.
 
+## ADR-0014 — Inventory transactional core & procurement financial scope
+- **Decision:** All stock changes route through a single central
+  `InventoryService` (movements are signed ledger entries; stock level = sum of
+  movements; negative stock blocked unless explicitly allowed). Procurement is
+  scoped to suppliers + purchase orders + receipt + line pricing only. Monetary
+  values use the Foundation `Money` type (integer minor units); prices/quantities
+  are caller-supplied and stored exactly. No GL, tax engine, discounts, or
+  payments. Warehouses are non-geographic (link to org units) so the transactional
+  core is fully testable without PostGIS.
+- **Status:** ACCEPTED (Phase 6). Financial transaction logic approved under
+  gate #12 for this scope; broader finance is deferred to a later phase.
+
 ## ADR-0013 — SessionStart hook
 - **Decision:** A synchronous `SessionStart` hook provisions the backend venv
   in Claude Code on the web so tests/linters are runnable. Remote-only,

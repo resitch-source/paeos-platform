@@ -130,3 +130,22 @@ Released, committed (`e285105`), and pushed.
   PostgreSQL 16; culture-unit/cycle/records + isolation PostGIS-gated. 66 unit
   tests pass; ruff + mypy clean.
 - No-fabrication upheld: no biological/water-quality coefficients invented.
+
+Released, committed (`1de6ed7`), and pushed.
+
+## 2026-09-05 — Phase 6 — Inventory + Procurement + Warehouse
+- Central `InventoryService`: item master, warehouses/storage locations, stock
+  levels, signed stock-movement ledger; movements, transfers, negative-stock
+  guard. All stock changes route through this single audited service.
+- Procurement (financial, gate #12): suppliers and purchase orders with a
+  state-machine lifecycle (draft→submitted→approved→received/cancelled) and line
+  pricing via the Money type (integer minor units); receiving a PO posts stock
+  IN through the central service. No GL/tax/payments; prices caller-supplied.
+- REST endpoints for items, warehouses, movements/transfers, stock, suppliers,
+  purchase orders (+ lines/totals/transitions/receive); permission catalog
+  extended and granted to TENANT_ADMIN. ADR-0014 records the scope.
+- Migration `0007_inventory_procurement` (additive: 8 tables + RLS, no
+  geometry); chain validated 0001→…→0007.
+- Tests: Money line-total math (unit); full inventory service, PO lifecycle +
+  receipt-into-stock, monetary totals, and tenant isolation — all validated on
+  PostgreSQL 16 (non-geometry). 69 unit tests pass; ruff + mypy clean.

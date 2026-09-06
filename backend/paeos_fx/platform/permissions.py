@@ -49,6 +49,19 @@ FISHERIES_CYCLE_READ = "fisheries.cycle.read"
 FISHERIES_CYCLE_WRITE = "fisheries.cycle.write"
 FISHERIES_RECORD_WRITE = "fisheries.record.write"
 
+# Inventory + procurement + warehouse (Phase 6).
+INVENTORY_ITEM_READ = "inventory.item.read"
+INVENTORY_ITEM_MANAGE = "inventory.item.manage"
+INVENTORY_WAREHOUSE_READ = "inventory.warehouse.read"
+INVENTORY_WAREHOUSE_MANAGE = "inventory.warehouse.manage"
+INVENTORY_STOCK_READ = "inventory.stock.read"
+INVENTORY_MOVEMENT_WRITE = "inventory.movement.write"
+PROCUREMENT_SUPPLIER_MANAGE = "procurement.supplier.manage"
+PROCUREMENT_PO_READ = "procurement.po.read"
+PROCUREMENT_PO_WRITE = "procurement.po.write"
+PROCUREMENT_PO_APPROVE = "procurement.po.approve"
+PROCUREMENT_PO_RECEIVE = "procurement.po.receive"
+
 # Full catalog seeded per environment.
 ENTERPRISE_CORE_PERMISSIONS: dict[str, str] = {
     PLATFORM_TENANT_PROVISION: "Provision new tenants (platform administrators).",
@@ -79,6 +92,17 @@ ENTERPRISE_CORE_PERMISSIONS: dict[str, str] = {
     FISHERIES_CYCLE_READ: "Read aquaculture cycles.",
     FISHERIES_CYCLE_WRITE: "Create and advance aquaculture cycles.",
     FISHERIES_RECORD_WRITE: "Record water quality, harvests, and mortality.",
+    INVENTORY_ITEM_READ: "Read inventory items.",
+    INVENTORY_ITEM_MANAGE: "Create and modify inventory items.",
+    INVENTORY_WAREHOUSE_READ: "Read warehouses and locations.",
+    INVENTORY_WAREHOUSE_MANAGE: "Create and modify warehouses and locations.",
+    INVENTORY_STOCK_READ: "Read stock levels and movements.",
+    INVENTORY_MOVEMENT_WRITE: "Record stock movements.",
+    PROCUREMENT_SUPPLIER_MANAGE: "Manage suppliers.",
+    PROCUREMENT_PO_READ: "Read purchase orders.",
+    PROCUREMENT_PO_WRITE: "Create and edit purchase orders.",
+    PROCUREMENT_PO_APPROVE: "Submit/approve/cancel purchase orders.",
+    PROCUREMENT_PO_RECEIVE: "Receive purchase orders into stock.",
 }
 
 # Permissions granted to the seeded TENANT_ADMIN system role (tenant-scoped;
@@ -111,6 +135,17 @@ TENANT_ADMIN_PERMISSIONS: tuple[str, ...] = (
     FISHERIES_CYCLE_READ,
     FISHERIES_CYCLE_WRITE,
     FISHERIES_RECORD_WRITE,
+    INVENTORY_ITEM_READ,
+    INVENTORY_ITEM_MANAGE,
+    INVENTORY_WAREHOUSE_READ,
+    INVENTORY_WAREHOUSE_MANAGE,
+    INVENTORY_STOCK_READ,
+    INVENTORY_MOVEMENT_WRITE,
+    PROCUREMENT_SUPPLIER_MANAGE,
+    PROCUREMENT_PO_READ,
+    PROCUREMENT_PO_WRITE,
+    PROCUREMENT_PO_APPROVE,
+    PROCUREMENT_PO_RECEIVE,
 )
 
 TENANT_ADMIN_ROLE_CODE = "TENANT_ADMIN"
