@@ -7,6 +7,22 @@ adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- **Phase 3 — Crop Production + Crop Simulation:**
+  - Crop production models: cropping cycles (with a Foundation state-machine
+    lifecycle planned→planted→growing→harvested→closed), growth observations,
+    and harvest records — quantitative values carry a provenance classification.
+  - First concrete simulation engine behind the Foundation simulation interface:
+    Growing Degree Days (GDD), a standard citable method with caller-supplied
+    parameters (base temperature + daily temperature series); no fabricated
+    coefficients. Results carry a full CalculationRecord classified SIMULATION.
+  - Persisted simulation runs (`simulation_run`) storing the provenance envelope.
+  - Services + REST endpoints (cropping-cycles + transitions, harvests,
+    crop-simulations/gdd); permission catalog extended and granted to
+    TENANT_ADMIN.
+  - Migration `0004_crop_production` (additive: 4 tables + RLS, no geometry).
+  - Tests: GDD math + provenance (unit); cropping-cycle workflow, harvest,
+    simulation persistence, and tenant isolation (integration, PostGIS-gated via
+    the parcel FK).
 - **Phase 2 — Agriculture Master Data + GIS:**
   - Reference/master data on the master-data framework: crop categories, crops,
     crop varieties, soil types, land-use types (structure/classification only —

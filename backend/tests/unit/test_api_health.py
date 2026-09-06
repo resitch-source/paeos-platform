@@ -28,8 +28,8 @@ def test_meta_reports_foundation(client):
     assert resp.status_code == 200
     body = resp.json()
     assert body["component"] == "PAEOS-FX Foundation"
-    assert body["active_phase"] == "PHASE_2_AGRI_MASTERDATA_GIS"
-    assert body["domain_phases_started"] == [1, 2]
+    assert body["active_phase"] == "PHASE_3_CROP_PRODUCTION_SIMULATION"
+    assert body["domain_phases_started"] == [1, 2, 3]
 
 
 def test_correlation_header_present(client):

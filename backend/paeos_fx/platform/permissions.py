@@ -28,6 +28,11 @@ AGRI_FARM_WRITE = "agri.farm.write"
 AGRI_PARCEL_READ = "agri.parcel.read"
 AGRI_PARCEL_WRITE = "agri.parcel.write"
 
+# Crop production + simulation (Phase 3).
+AGRI_PRODUCTION_READ = "agri.production.read"
+AGRI_PRODUCTION_WRITE = "agri.production.write"
+AGRI_SIMULATION_RUN = "agri.simulation.run"
+
 # Full catalog seeded per environment.
 ENTERPRISE_CORE_PERMISSIONS: dict[str, str] = {
     PLATFORM_TENANT_PROVISION: "Provision new tenants (platform administrators).",
@@ -43,6 +48,9 @@ ENTERPRISE_CORE_PERMISSIONS: dict[str, str] = {
     AGRI_FARM_WRITE: "Create and modify farms.",
     AGRI_PARCEL_READ: "Read land parcels.",
     AGRI_PARCEL_WRITE: "Create and modify land parcels.",
+    AGRI_PRODUCTION_READ: "Read cropping cycles and harvests.",
+    AGRI_PRODUCTION_WRITE: "Create/advance cropping cycles and record harvests.",
+    AGRI_SIMULATION_RUN: "Run crop simulations.",
 }
 
 # Permissions granted to the seeded TENANT_ADMIN system role (tenant-scoped;
@@ -60,6 +68,9 @@ TENANT_ADMIN_PERMISSIONS: tuple[str, ...] = (
     AGRI_FARM_WRITE,
     AGRI_PARCEL_READ,
     AGRI_PARCEL_WRITE,
+    AGRI_PRODUCTION_READ,
+    AGRI_PRODUCTION_WRITE,
+    AGRI_SIMULATION_RUN,
 )
 
 TENANT_ADMIN_ROLE_CODE = "TENANT_ADMIN"

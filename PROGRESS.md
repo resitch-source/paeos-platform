@@ -74,3 +74,23 @@ Released, committed (`0c219c3`), and pushed.
   validated on PostgreSQL 16; farm/parcel GIS + isolation gated on PostGIS
   (CI). 55 unit tests pass; ruff + mypy clean.
 - No-fabrication upheld: no agronomic coefficients or geometries invented.
+
+Released, committed (`6d5b3ed`), and pushed.
+
+## 2026-09-05 — Phase 3 — Crop Production + Crop Simulation
+- Production models: cropping_cycle (Foundation state-machine lifecycle),
+  growth_observation, harvest_record, simulation_run; classified quantities.
+- First simulation engine behind the Foundation interface: Growing Degree Days
+  (GDD) — standard citable method, caller-supplied parameters, results carry a
+  full CalculationRecord classified SIMULATION. No fabricated coefficients.
+- Services (CroppingCycleService/HarvestService/CropSimulationService) + REST
+  endpoints; permission catalog extended (agri.production/simulation) and
+  granted to TENANT_ADMIN.
+- Migration `0004_crop_production` (additive: 4 tables + RLS); chain validated
+  0001→0002→0003→0004.
+- Tests: 6 GDD unit tests (hand-verified math + provenance); cropping-cycle
+  workflow, harvest, simulation persistence, and tenant isolation
+  (integration, PostGIS-gated via parcel FK). Integration fixture hardened
+  (FK-closed plain-table subset; PostGIS skip + %-escaping in the RLS test).
+- 61 unit tests pass; master-data + enterprise integration validated on
+  PostgreSQL 16; ruff + mypy clean.

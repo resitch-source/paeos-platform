@@ -9,6 +9,7 @@ from __future__ import annotations
 # noqa: F401 — imports are for side effects (model registration).
 from paeos_fx.agri import gis as _agri_gis  # noqa: F401
 from paeos_fx.agri import masterdata as _agri_masterdata  # noqa: F401
+from paeos_fx.agri import production as _agri_production  # noqa: F401
 from paeos_fx.platform import approval as _approval  # noqa: F401
 from paeos_fx.platform import audit as _audit  # noqa: F401
 from paeos_fx.platform import documents as _documents  # noqa: F401
@@ -44,4 +45,8 @@ TENANT_OWNED_TABLES: tuple[str, ...] = (
     "agri_admin_area",
     "agri_farm",
     "agri_land_parcel",
+    "cropping_cycle",
+    "growth_observation",
+    "harvest_record",
+    "simulation_run",
 )

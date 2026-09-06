@@ -26,8 +26,22 @@ def _has_geometry(table) -> bool:
     return any(isinstance(c.type, Geometry) for c in table.columns)
 
 
-def _non_geometry_tables() -> list:
-    return [t for t in metadata.sorted_tables if not _has_geometry(t)]
+def _plain_tables() -> list:
+    """Tables whose FK closure contains no PostGIS geometry table.
+
+    A table with a geometry column, or one that references (transitively) such a
+    table, cannot be created without PostGIS, so it is excluded from the plain
+    (any-PostgreSQL) fixture.
+    """
+    plain: set[str] = set()
+    ordered = list(metadata.sorted_tables)  # dependency order
+    for table in ordered:
+        if _has_geometry(table):
+            continue
+        referenced = {fk.column.table.name for fk in table.foreign_keys}
+        if referenced <= plain | {table.name}:
+            plain.add(table.name)
+    return [t for t in ordered if t.name in plain]
 
 
 def _apply_rls(conn, table_names: set[str]) -> None:
@@ -57,8 +71,8 @@ def _postgis_available(engine) -> bool:
 
 @pytest.fixture()
 def enterprise_db(engine):
-    """Create non-geometry tables + RLS; drop them on teardown."""
-    tables = _non_geometry_tables()
+    """Create plain (no-PostGIS-dependency) tables + RLS; drop on teardown."""
+    tables = _plain_tables()
     with engine.begin() as conn:
         conn.execute(text(f"CREATE SCHEMA IF NOT EXISTS {PLATFORM_SCHEMA}"))
     metadata.create_all(engine, tables=tables)

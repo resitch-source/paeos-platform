@@ -25,13 +25,24 @@ APP_ROLE_PW = "rls_test_pw"
 
 @pytest.fixture()
 def migrated_db(engine):
-    """Apply the baseline migration and provision a non-superuser app role."""
+    """Apply the baseline migration and provision a non-superuser app role.
+
+    Requires PostGIS (the baseline migration enables it); skipped otherwise.
+    """
     from alembic import command
     from alembic.config import Config
 
+    try:
+        with engine.connect() as conn:
+            conn.execute(text("SELECT postgis_version()"))
+    except Exception:
+        pytest.skip("PostGIS not available on the target database.")
+
     cfg = Config("alembic.ini")
     cfg.set_main_option("script_location", "migrations")
-    cfg.set_main_option("sqlalchemy.url", str(engine.url))
+    # Escape '%' so configparser interpolation does not choke on URL-encoded
+    # socket hosts (e.g. host=%2Ftmp/...).
+    cfg.set_main_option("sqlalchemy.url", str(engine.url).replace("%", "%%"))
     command.upgrade(cfg, "head")
 
     with engine.begin() as conn:
