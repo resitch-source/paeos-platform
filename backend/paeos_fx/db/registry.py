@@ -10,6 +10,7 @@ from __future__ import annotations
 from paeos_fx.agri import gis as _agri_gis  # noqa: F401
 from paeos_fx.agri import masterdata as _agri_masterdata  # noqa: F401
 from paeos_fx.agri import production as _agri_production  # noqa: F401
+from paeos_fx.experts import models as _experts_models  # noqa: F401
 from paeos_fx.fisheries import masterdata as _fish_masterdata  # noqa: F401
 from paeos_fx.fisheries import models as _fish_models  # noqa: F401
 from paeos_fx.inventory import models as _inv_models  # noqa: F401
@@ -28,7 +29,9 @@ from paeos_fx.platform import tenancy as _tenancy  # noqa: F401
 from paeos_fx.platform import workflow as _workflow  # noqa: F401
 from paeos_fx.processing import models as _proc_mes_models  # noqa: F401
 from paeos_fx.procurement import models as _proc_models  # noqa: F401
+from paeos_fx.support import models as _support_models  # noqa: F401
 from paeos_fx.trading import models as _trading_models  # noqa: F401
+from paeos_fx.training import models as _training_models  # noqa: F401
 
 # Tenant-owned tables subject to Row-Level Security policies.
 TENANT_OWNED_TABLES: tuple[str, ...] = (
@@ -90,4 +93,10 @@ TENANT_OWNED_TABLES: tuple[str, ...] = (
     "sales_order",
     "sales_order_line",
     "shipment",
+    "course",
+    "enrollment",
+    "support_ticket",
+    "ticket_comment",
+    "expert_profile",
+    "engagement",
 )

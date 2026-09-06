@@ -85,6 +85,19 @@ TRADING_ORDER_FULFILL = "trading.order.fulfill"
 LOGISTICS_SHIPMENT_READ = "logistics.shipment.read"
 LOGISTICS_SHIPMENT_WRITE = "logistics.shipment.write"
 
+# Training + technical support + expert marketplace (Phase 9).
+# Expert engagement fees/rates are financial (#12).
+TRAINING_COURSE_READ = "training.course.read"
+TRAINING_COURSE_MANAGE = "training.course.manage"
+TRAINING_ENROLLMENT_WRITE = "training.enrollment.write"
+SUPPORT_TICKET_READ = "support.ticket.read"
+SUPPORT_TICKET_WRITE = "support.ticket.write"
+SUPPORT_TICKET_RESOLVE = "support.ticket.resolve"
+EXPERTS_PROFILE_READ = "experts.profile.read"
+EXPERTS_PROFILE_MANAGE = "experts.profile.manage"
+EXPERTS_ENGAGEMENT_READ = "experts.engagement.read"
+EXPERTS_ENGAGEMENT_WRITE = "experts.engagement.write"
+
 # Full catalog seeded per environment.
 ENTERPRISE_CORE_PERMISSIONS: dict[str, str] = {
     PLATFORM_TENANT_PROVISION: "Provision new tenants (platform administrators).",
@@ -144,6 +157,16 @@ ENTERPRISE_CORE_PERMISSIONS: dict[str, str] = {
     TRADING_ORDER_FULFILL: "Fulfill sales orders from stock.",
     LOGISTICS_SHIPMENT_READ: "Read shipments.",
     LOGISTICS_SHIPMENT_WRITE: "Create and advance shipments.",
+    TRAINING_COURSE_READ: "Read training courses.",
+    TRAINING_COURSE_MANAGE: "Create and modify training courses.",
+    TRAINING_ENROLLMENT_WRITE: "Enroll learners and advance enrollments.",
+    SUPPORT_TICKET_READ: "Read support tickets.",
+    SUPPORT_TICKET_WRITE: "Create, comment on, and assign support tickets.",
+    SUPPORT_TICKET_RESOLVE: "Resolve, reopen, close, or cancel support tickets.",
+    EXPERTS_PROFILE_READ: "Read expert profiles.",
+    EXPERTS_PROFILE_MANAGE: "Create and modify expert profiles.",
+    EXPERTS_ENGAGEMENT_READ: "Read expert engagements.",
+    EXPERTS_ENGAGEMENT_WRITE: "Create and advance expert engagements.",
 }
 
 # Permissions granted to the seeded TENANT_ADMIN system role (tenant-scoped;
@@ -205,6 +228,16 @@ TENANT_ADMIN_PERMISSIONS: tuple[str, ...] = (
     TRADING_ORDER_FULFILL,
     LOGISTICS_SHIPMENT_READ,
     LOGISTICS_SHIPMENT_WRITE,
+    TRAINING_COURSE_READ,
+    TRAINING_COURSE_MANAGE,
+    TRAINING_ENROLLMENT_WRITE,
+    SUPPORT_TICKET_READ,
+    SUPPORT_TICKET_WRITE,
+    SUPPORT_TICKET_RESOLVE,
+    EXPERTS_PROFILE_READ,
+    EXPERTS_PROFILE_MANAGE,
+    EXPERTS_ENGAGEMENT_READ,
+    EXPERTS_ENGAGEMENT_WRITE,
 )
 
 TENANT_ADMIN_ROLE_CODE = "TENANT_ADMIN"

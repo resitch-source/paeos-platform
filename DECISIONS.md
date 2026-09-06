@@ -91,3 +91,21 @@ Decisions are immutable once recorded. Changes are appended as new entries.
   in Claude Code on the web so tests/linters are runnable. Remote-only,
   idempotent. Effective for sessions after it lands on the default branch.
 - **Status:** ACCEPTED (Phase 0).
+
+## ADR-0015 — Enablement scope (training, support, expert marketplace) & fee boundary
+- **Decision:** Phase 9 adds three enablement domains on the existing Foundation
+  engines, with no new framework code: (a) **Training** — a course catalog and
+  learner enrollments driven by the state-machine engine; completion is a
+  recorded transition, with no scoring/competency/certificate engine (nothing
+  about attainment is fabricated). (b) **Technical support** — tickets with a
+  state-machine lifecycle and threaded comments; caller-supplied priorities; no
+  SLA automation and no external communication channels (deferred to Phase 12).
+  (c) **Expert marketplace** — an expert directory and client engagements with an
+  agreed fee. Expert rate cards and engagement fees are exact `Money` amounts
+  (integer minor units), caller-supplied; there is **no** payment, invoicing, AR,
+  GL, tax, or settlement logic, and no fabricated expert ratings/scores. All six
+  tables are tenant-owned (RLS) and non-geometric (fully testable without
+  PostGIS).
+- **Status:** ACCEPTED (Phase 9). Financial transaction logic (fees/rates)
+  approved under gate #12 for this bounded scope; broader finance remains
+  deferred.

@@ -17,6 +17,7 @@ from paeos_fx.api.v1 import (
     auth,
     crop_simulations,
     cropping_cycles,
+    enablement,
     farms,
     fisheries_masterdata,
     harvests,
@@ -53,6 +54,7 @@ api_router.include_router(inventory.router)
 api_router.include_router(procurement.router)
 api_router.include_router(processing.router)
 api_router.include_router(marketplace.router)
+api_router.include_router(enablement.router)
 
 
 @api_router.get("/meta", tags=["meta"])
@@ -62,6 +64,6 @@ async def meta() -> dict:
         "product": "PAEOS",
         "component": "PAEOS-FX Foundation",
         "version": __version__,
-        "active_phase": "PHASE_8_MARKETPLACE_TRADING_LOGISTICS",
-        "domain_phases_started": [1, 2, 3, 4, 5, 6, 7, 8],
+        "active_phase": "PHASE_9_TRAINING_SUPPORT_EXPERTS",
+        "domain_phases_started": [1, 2, 3, 4, 5, 6, 7, 8, 9],
     }

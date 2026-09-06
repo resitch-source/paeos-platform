@@ -7,6 +7,30 @@ adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- **Phase 9 — Training + Technical Support + Expert Marketplace:**
+  - Training: a course catalog and learner enrollments with a state-machine
+    lifecycle (enrolled→in_progress→completed/withdrawn). Completion is a
+    recorded transition — no scoring, competency, or certificate engine (nothing
+    about learner attainment is fabricated).
+  - Technical support: tickets with a state-machine lifecycle
+    (open→in_progress→resolved→closed, plus reopen/cancel), caller-supplied
+    priorities, and threaded comments. Pure workflow + audit — no SLA automation
+    and no external communication channels.
+  - Expert marketplace (financial, approval gate #12): an expert directory and
+    client engagements with a lifecycle
+    (requested→accepted→delivered→closed/cancelled) and an agreed fee via the
+    Foundation `Money` type (integer minor units). Expert rate cards and fees are
+    caller-supplied and exact; no payment/AR/GL/tax/settlement logic and no
+    fabricated ratings.
+  - Services + REST endpoints (courses, enrollments, tickets + comments/assign,
+    expert profiles, engagements + fee/transitions); permission catalog extended
+    (training.*/support.*/experts.*) and granted to TENANT_ADMIN. ADR-0015
+    records the scope and fee boundary.
+  - Migration `0010_training_support_experts` (additive: 6 tables + RLS, no
+    geometry).
+  - Tests: enrollment/ticket/engagement lifecycle transitions + guards (unit);
+    course→enrollment, ticket flow with comments, engagement lifecycle + fee, and
+    tenant isolation (integration, any PostgreSQL).
 - **Phase 8 — Marketplace + Trading + Logistics:**
   - Customers, marketplace listings, and sales orders with a state-machine
     lifecycle (draft→confirmed→fulfilled→closed/cancelled) and exact monetary

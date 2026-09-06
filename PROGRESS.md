@@ -188,3 +188,29 @@ Released, committed (`facccf8`), and pushed.
   fulfilment via central inventory, shipment flow, and tenant isolation — all
   validated on PostgreSQL 16 (non-geometry). 78 unit tests pass; ruff + mypy
   clean.
+
+Released, committed (`a0ab126`), and pushed.
+
+## 2026-09-06 — Phase 9 — Training + Technical Support + Expert Marketplace
+- Training: course catalog + learner enrollments with a state-machine lifecycle
+  (enrolled→in_progress→completed/withdrawn). Completion is a recorded
+  transition — no scoring/competency/certificate engine (no fabricated
+  attainment).
+- Technical support: tickets with a lifecycle (open→in_progress→resolved→closed,
+  +reopen/cancel), caller-supplied priorities, and threaded comments. Pure
+  workflow + audit; no SLA automation, no external channels.
+- Expert marketplace (financial, gate #12): expert directory + client
+  engagements with a lifecycle (requested→accepted→delivered→closed/cancelled)
+  and an agreed fee via the Money type (integer minor units). No
+  payments/AR/GL/tax; no fabricated ratings.
+- Services (Course/Enrollment/SupportTicket/ExpertProfile/Engagement) on the
+  established DomainService/TenantRepository pattern; REST endpoints; permission
+  catalog extended (training.*/support.*/experts.*) and granted to TENANT_ADMIN.
+  ADR-0015 records the scope and fee boundary.
+- Migration `0010_training_support_experts` (additive: 6 tables + RLS, no
+  geometry); chain validated 0001→…→0010 (single head).
+- Tests: enrollment/ticket/engagement lifecycle transitions + guards (unit);
+  course→enrollment, ticket flow with comments, engagement lifecycle + fee, and
+  tenant isolation — all validated on PostgreSQL 16 (non-geometry). 84 unit
+  tests pass; 29 non-geometry integration tests pass (16 PostGIS-gated skip);
+  ruff + mypy clean.
