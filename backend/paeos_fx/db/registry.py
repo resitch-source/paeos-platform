@@ -14,6 +14,7 @@ from paeos_fx.platform import events as _events  # noqa: F401
 from paeos_fx.platform import iam as _iam  # noqa: F401
 from paeos_fx.platform import notifications as _notifications  # noqa: F401
 from paeos_fx.platform import numbering as _numbering  # noqa: F401
+from paeos_fx.platform import org as _org  # noqa: F401
 from paeos_fx.platform import tenancy as _tenancy  # noqa: F401
 from paeos_fx.platform import workflow as _workflow  # noqa: F401
 
@@ -32,4 +33,5 @@ TENANT_OWNED_TABLES: tuple[str, ...] = (
     "approval_step",
     "document",
     "notification",
+    "org_unit",
 )

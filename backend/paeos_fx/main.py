@@ -27,6 +27,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         docs_url="/docs",
         openapi_url="/openapi.json",
     )
+    app.state.settings = settings
     app.add_middleware(ContextMiddleware)
     install_exception_handlers(app)
     app.include_router(api_router, prefix=settings.api_v1_prefix)

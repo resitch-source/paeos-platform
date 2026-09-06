@@ -58,6 +58,15 @@ def _apply_tenant(session: Session, tenant_id: uuid.UUID | None) -> None:
     )
 
 
+def bind_tenant(session: Session, tenant_id: uuid.UUID | None) -> None:
+    """Set the RLS tenant variable on an already-open session/transaction.
+
+    Used when a single unit of work must switch tenant context (e.g. tenant
+    onboarding, which creates a tenant and then writes tenant-scoped rows).
+    """
+    _apply_tenant(session, tenant_id)
+
+
 @contextmanager
 def tenant_session(tenant_id: uuid.UUID | None) -> Iterator[Session]:
     """Yield a session with the tenant RLS variable applied for its lifetime."""

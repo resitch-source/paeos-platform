@@ -7,6 +7,22 @@ adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- **Phase 1 — Enterprise Core:**
+  - Authentication (`POST /auth/login`, `GET /auth/me`) implementing the
+    approved JWT design; permission-embedding access tokens.
+  - Request authorization pipeline (`api/deps.py`): JWT → execution context,
+    `require_permission`, and RLS-bound tenant DB sessions.
+  - Reusable domain-service (`platform/service.py`) and repository
+    (`platform/repository.py`) layer with tenant filtering (defense in depth).
+  - Tenant onboarding/seeding (`platform/onboarding_service.py`): permission
+    catalog, `TENANT_ADMIN` system role, first admin user, platform tenant
+    bootstrap.
+  - IAM administration (users, roles, permission grants) and organizational
+    units (`org_unit`, hierarchical, non-geographic) with audited services and
+    REST endpoints.
+  - Migration `0002_enterprise_core`: additive `org_unit` table + RLS.
+  - Tests: auth/RBAC guards (unit) and onboarding/auth/RBAC/CRUD/tenant-isolation
+    (integration).
 - **Phase 0 — Project Governance:** `CONTRIBUTING.md`, `SECURITY.md`,
   `CODE_OF_CONDUCT.md`, `CODEOWNERS`, pull-request and issue templates,
   `.pre-commit-config.yaml`, and governance docs (`DEFINITION_OF_DONE.md`,

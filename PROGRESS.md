@@ -37,3 +37,21 @@ Foundation released, committed (`d87de56`), and pushed to
 - Updated governance ledgers and ADRs (ADR-0011 versioning, ADR-0012 branch
   protection stance).
 - No application code, DB, or future-phase changes.
+
+Released, committed (`ec3b22a`), and pushed.
+
+## 2026-09-05 — Phase 1 — Enterprise Core
+- Reusable domain-service + tenant-repository layer (defense-in-depth tenant
+  filtering on top of RLS).
+- Authentication implementing approved JWT design: `POST /auth/login`
+  (tenant_slug + email + password), `GET /auth/me`; permission-embedding tokens.
+- Request authorization pipeline (`api/deps.py`): JWT → execution context,
+  `require_permission`, RLS-bound tenant session.
+- Tenant onboarding/seeding: permission catalog, `TENANT_ADMIN` role, first
+  admin user, platform-tenant bootstrap.
+- IAM admin (users/roles/permission grants) + organizational units
+  (`org_unit`, hierarchical, non-geographic) with audited services + REST APIs.
+- Migration `0002_enterprise_core` (additive: org_unit + RLS).
+- Tests: 5 auth/RBAC guard unit tests; 5 integration tests (onboarding, auth,
+  RBAC, CRUD, tenant isolation) validated on PostgreSQL 16.
+- ruff + mypy clean; 49 unit tests pass. No GIS/agriculture/future-phase work.
