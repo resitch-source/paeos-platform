@@ -24,6 +24,7 @@ from paeos_fx.api.v1 import (
     fisheries_masterdata,
     harvests,
     health,
+    integration,
     inventory,
     livestock_masterdata,
     marketplace,
@@ -59,6 +60,7 @@ api_router.include_router(marketplace.router)
 api_router.include_router(enablement.router)
 api_router.include_router(agents.router)
 api_router.include_router(agrisim.router)
+api_router.include_router(integration.router)
 
 
 @api_router.get("/meta", tags=["meta"])
@@ -68,6 +70,6 @@ async def meta() -> dict:
         "product": "PAEOS",
         "component": "PAEOS-FX Foundation",
         "version": __version__,
-        "active_phase": "PHASE_11_AGRISIM_OPTIMIZATION_TWINS",
-        "domain_phases_started": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+        "active_phase": "PHASE_12_IOT_INTEGRATIONS_SECURITY",
+        "domain_phases_started": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     }

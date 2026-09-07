@@ -10,7 +10,7 @@ from fastapi import FastAPI
 
 from paeos_fx import __version__
 from paeos_fx.api.errors import install_exception_handlers
-from paeos_fx.api.middleware import ContextMiddleware
+from paeos_fx.api.middleware import ContextMiddleware, RateLimitMiddleware
 from paeos_fx.api.v1.router import api_router
 from paeos_fx.core.config import Settings, get_settings
 from paeos_fx.core.logging import configure_logging
@@ -29,6 +29,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     )
     app.state.settings = settings
     app.add_middleware(ContextMiddleware)
+    if settings.rate_limit_enabled:
+        app.add_middleware(RateLimitMiddleware, limit=settings.rate_limit_per_minute)
     install_exception_handlers(app)
     app.include_router(api_router, prefix=settings.api_v1_prefix)
     return app

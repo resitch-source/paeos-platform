@@ -110,6 +110,10 @@ AGRISIM_SCENARIO_RUN = "agrisim.scenario.run"
 AGRISIM_SCENARIO_READ = "agrisim.scenario.read"
 AGRISIM_OPTIMIZE_RUN = "agrisim.optimize.run"
 
+# IoT + integrations (Phase 12). Inbound records only — no actuation permission.
+INTEGRATION_MESSAGE_INGEST = "integration.message.ingest"
+INTEGRATION_MESSAGE_READ = "integration.message.read"
+
 # Full catalog seeded per environment.
 ENTERPRISE_CORE_PERMISSIONS: dict[str, str] = {
     PLATFORM_TENANT_PROVISION: "Provision new tenants (platform administrators).",
@@ -185,6 +189,8 @@ ENTERPRISE_CORE_PERMISSIONS: dict[str, str] = {
     AGRISIM_SCENARIO_RUN: "Run AgriSim simulation scenarios.",
     AGRISIM_SCENARIO_READ: "Read AgriSim scenario runs.",
     AGRISIM_OPTIMIZE_RUN: "Run optimization models (EOQ, allocation).",
+    INTEGRATION_MESSAGE_INGEST: "Ingest inbound integration messages (e.g. IoT telemetry).",
+    INTEGRATION_MESSAGE_READ: "Read inbound integration messages.",
 }
 
 # Permissions granted to the seeded TENANT_ADMIN system role (tenant-scoped;
@@ -262,6 +268,8 @@ TENANT_ADMIN_PERMISSIONS: tuple[str, ...] = (
     AGRISIM_SCENARIO_RUN,
     AGRISIM_SCENARIO_READ,
     AGRISIM_OPTIMIZE_RUN,
+    INTEGRATION_MESSAGE_INGEST,
+    INTEGRATION_MESSAGE_READ,
 )
 
 TENANT_ADMIN_ROLE_CODE = "TENANT_ADMIN"

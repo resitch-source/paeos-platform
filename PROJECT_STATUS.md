@@ -1,7 +1,7 @@
 # PAEOS — Project Status
 
 **Last updated:** 2026-09-06
-**Active stage:** Phase 11 — AgriSim + Optimization + Digital Twins — IMPLEMENT / TEST
+**Active stage:** Phase 12 — IoT + Integrations + Security + Prod Hardening — IMPLEMENT / TEST
 **Branch:** `claude/paeos-repo-inspection-t9kf9j`
 
 ## Phase ledger
@@ -20,18 +20,19 @@
 | 8     | Marketplace + Trading + Logistics                | COMPLETE      |
 | 9     | Training + Technical Support + Expert Marketplace| COMPLETE      |
 | 10    | AgriIntelligence / AI Agents                     | COMPLETE      |
-| 11    | AgriSim + Optimization + Digital Twins           | IN PROGRESS   |
-| 12    | IoT + Integrations + Security + Prod Hardening   | NOT STARTED   |
+| 11    | AgriSim + Optimization + Digital Twins           | COMPLETE      |
+| 12    | IoT + Integrations + Security + Prod Hardening   | IN PROGRESS   |
 | 13    | Commercialization + Customer Deployment          | NOT STARTED   |
 
-## Current stage scope (Phase 11)
-Concrete simulation/optimization engines behind the Foundation SimulationEngine
-contract — EOQ and proportional allocation, alongside the registered GDD and
-mass-balance engines — each emitting a full CalculationRecord classified
-SIMULATION with caller-supplied parameters and no fabricated coefficients. Runs
-persist to a standalone non-geometric scenario_run table. Digital-twin
-projections are advisory forward runs only — no actuation and no new control path
-(gates #13/#14 upheld; gate #8 not triggered). One non-geometric table.
+## Current stage scope (Phase 12)
+Concrete integration framework behind the Foundation contract: an idempotent
+inbound-message ledger routing external messages (e.g. IoT telemetry) into
+existing domain services — records only, advisory, no actuation. The default
+outbound adapter refuses to fabricate a delivery (no external egress). Additive,
+default-OFF security hardening: an opt-in fixed-window rate limiter and extended
+production-safety assertions, plus a production-hardening checklist. NO change to
+authentication (#10), tenant isolation/RLS (#9), or any existing security
+boundary (#8). One non-geometric table.
 
 ## Gates
 - G1 Foundation Plan Approval — **APPROVED** (2026-09-05)
@@ -47,6 +48,7 @@ projections are advisory forward runs only — no actuation and no new control p
 - Phase 8 Start/Plan/Release/Commit (incl. financial #12) — **APPROVED** → `a0ab126`, pushed
 - Phase 9 Start/Plan/Release/Commit (incl. financial #12) — **APPROVED** → `252072e`, pushed
 - Phase 10 Start/Plan/Release/Commit — **APPROVED** → `d9c5cff`, pushed
-- Start Phase 11 (#17) — **APPROVED**
-- Phase 11 Plan Approval — **APPROVED**
-- Phase 11 Release / Commit — pending
+- Phase 11 Start/Plan/Release/Commit — **APPROVED** → `2c963bd`, pushed
+- Start Phase 12 (#17) — **APPROVED**
+- Phase 12 Plan Approval (additive hardening; no boundary change, #8 not triggered) — **APPROVED**
+- Phase 12 Release / Commit — pending

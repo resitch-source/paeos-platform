@@ -51,6 +51,10 @@ class Settings(BaseSettings):
     jwt_access_ttl_seconds: int = 3600
     password_min_length: int = 12
 
+    # --- Rate limiting (Phase 12; additive, disabled by default) ---
+    rate_limit_enabled: bool = False
+    rate_limit_per_minute: int = 600
+
     # --- Localization ---
     default_locale: str = "en"
     supported_locales: list[str] = Field(default_factory=lambda: ["en", "fil"])
@@ -89,6 +93,10 @@ class Settings(BaseSettings):
                 raise RuntimeError("PAEOS_JWT_SECRET must be set in production.")
             if self.debug:
                 raise RuntimeError("Debug mode must be disabled in production.")
+            if "paeos:paeos@localhost" in self.database_url:
+                raise RuntimeError(
+                    "PAEOS_DATABASE_URL must not use default credentials in production."
+                )
 
 
 @lru_cache

@@ -7,6 +7,29 @@ adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- **Phase 12 — IoT + Integrations + Security + Production Hardening:**
+  - Concrete integration framework behind the Foundation contract: an idempotent
+    `inbound_message` ledger (unique on tenant + system + idempotency_key) so
+    external systems can retry safely. A registered telemetry handler maps an
+    external reading into the Phase 7 asset-telemetry path — records only,
+    MEASURED, no actuation.
+  - The default outbound adapter refuses to fabricate a delivery (no external
+    network egress is wired), mirroring the currency module's unconfigured
+    provider (NO-FABRICATION).
+  - Additive, default-OFF security hardening: a fixed-window rate limiter
+    (`core/ratelimit.py`) wired as opt-in middleware (`rate_limit_enabled=False`
+    by default) and extended `assert_production_safe()` (rejects default DB
+    credentials in production). No change to authentication, tenant isolation
+    (RLS), or any existing security boundary. `docs/PRODUCTION_HARDENING.md` adds
+    a deployment checklist.
+  - Services + REST endpoints (ingest — 201 new / 200 dedupe — and list);
+    permission catalog extended (`integration.*`; no actuation permission by
+    design) and granted to TENANT_ADMIN. ADR-0018 records the scope.
+  - Migration `0013_integration_iot` (additive: 1 table + RLS, no geometry).
+  - Tests: rate-limiter window, idempotency/mapper, unconfigured-adapter refusal,
+    and prod-safety guard (unit); telemetry ingest into the central telemetry
+    path, duplicate-key no-op, and tenant isolation (integration, any
+    PostgreSQL).
 - **Phase 11 — AgriSim + Optimization + Digital Twins:**
   - Optimization engines behind the Foundation `SimulationEngine` contract:
     Economic Order Quantity (`EOQ = √(2·D·S/H)`, Harris 1913) and closed-form

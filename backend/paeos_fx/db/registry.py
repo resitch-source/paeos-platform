@@ -15,6 +15,7 @@ from paeos_fx.ai import models as _ai_models  # noqa: F401
 from paeos_fx.experts import models as _experts_models  # noqa: F401
 from paeos_fx.fisheries import masterdata as _fish_masterdata  # noqa: F401
 from paeos_fx.fisheries import models as _fish_models  # noqa: F401
+from paeos_fx.integration import models as _integration_models  # noqa: F401
 from paeos_fx.inventory import models as _inv_models  # noqa: F401
 from paeos_fx.livestock import masterdata as _lv_masterdata  # noqa: F401
 from paeos_fx.livestock import models as _lv_models  # noqa: F401
@@ -104,4 +105,5 @@ TENANT_OWNED_TABLES: tuple[str, ...] = (
     "agent_run",
     "ai_recommendation",
     "scenario_run",
+    "inbound_message",
 )

@@ -264,3 +264,29 @@ Released, committed (`d9c5cff`), and pushed.
   twin projection, and tenant isolation (integration, any PostgreSQL). 97 unit
   tests pass; 35 non-geometry integration tests pass (16 PostGIS-gated skip);
   ruff + mypy clean.
+
+Released, committed (`2c963bd`), and pushed.
+
+## 2026-09-06 — Phase 12 — IoT + Integrations + Security + Prod Hardening
+- Concrete integration framework behind the Foundation contract: an idempotent
+  inbound-message ledger (unique on tenant+system+idempotency_key) so external
+  systems can retry safely. A registered telemetry handler maps a reading into
+  the Phase 7 asset-telemetry path — records only, MEASURED, no actuation.
+- The default outbound adapter REFUSES to fabricate a delivery (no external
+  egress wired); mirrors the currency module's unconfigured-provider pattern.
+- Additive, default-OFF security hardening: a fixed-window rate limiter
+  (core/ratelimit.py) wired as opt-in middleware (rate_limit_enabled=False by
+  default), and extended assert_production_safe() (rejects default DB creds in
+  production). NO change to authentication (#10), tenant isolation/RLS (#9), or
+  any existing security boundary (#8). docs/PRODUCTION_HARDENING.md added.
+- IntegrationService on the DomainService/TenantRepository pattern; REST
+  endpoints (ingest — 201 new / 200 dedupe — and list); permission catalog
+  extended (integration.*; no actuation permission) and granted to TENANT_ADMIN.
+  ADR-0018 records the scope.
+- Migration `0013_integration_iot` (additive: 1 table + RLS, no geometry); chain
+  validated 0001→…→0013 (single head).
+- Tests: rate-limiter window + idempotency/mapper + unconfigured-adapter refusal
+  + prod-safety guard (unit); telemetry ingest into central telemetry path,
+  duplicate-key no-op, and tenant isolation (integration, any PostgreSQL). 103
+  unit tests pass; 38 non-geometry integration tests pass (16 PostGIS-gated
+  skip); ruff + mypy clean.

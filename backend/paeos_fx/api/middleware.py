@@ -2,13 +2,15 @@
 
 from __future__ import annotations
 
+import time
 import uuid
 
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.requests import Request
-from starlette.responses import Response
+from starlette.responses import JSONResponse, Response
 
 from paeos_fx.core.context import ExecutionContext, reset_context, set_context
+from paeos_fx.core.ratelimit import FixedWindowRateLimiter
 
 CORRELATION_HEADER = "X-Correlation-ID"
 
@@ -39,3 +41,27 @@ class ContextMiddleware(BaseHTTPMiddleware):
         for key, value in _SECURITY_HEADERS.items():
             response.headers.setdefault(key, value)
         return response
+
+
+class RateLimitMiddleware(BaseHTTPMiddleware):
+    """Additive, opt-in fixed-window rate limiter (defense in depth).
+
+    Disabled unless ``rate_limit_enabled`` is set, so it changes no existing
+    behavior or security boundary. Keying is by client host — a coarse throttle,
+    not an authentication or tenant-isolation control.
+    """
+
+    def __init__(self, app, limit: int, window_seconds: int = 60):
+        super().__init__(app)
+        self._limiter = FixedWindowRateLimiter(limit=limit,
+                                               window_seconds=window_seconds)
+
+    async def dispatch(self, request: Request, call_next) -> Response:
+        client = request.client.host if request.client else "unknown"
+        if not self._limiter.allow(client, time.time()):
+            return JSONResponse(
+                status_code=429,
+                content={"error": {"code": "rate_limited",
+                                   "message": "Too many requests."}},
+            )
+        return await call_next(request)

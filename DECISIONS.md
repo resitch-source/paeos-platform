@@ -142,3 +142,22 @@ Decisions are immutable once recorded. Changes are appended as new entries.
   `guard_control`-gated and unimplemented (#14). No solver/LP/ML dependency.
 - **Status:** ACCEPTED (Phase 11). Heavy solvers, ML surrogates, real-time IoT
   twin streaming, and any autonomous control remain deferred/gated.
+
+## ADR-0018 — Integration/IoT scope & additive security hardening
+- **Decision:** Phase 12 instantiates the Foundation integration contract with an
+  idempotent inbound-message ledger (`inbound_message`, unique on
+  (tenant_id, system, idempotency_key)) so external systems can retry safely.
+  Registered handlers map a payload into an existing domain service — the
+  telemetry handler records an asset reading via the Phase 7 path. Ingestion is
+  RECORDS-ONLY (advisory) with NO actuation or machinery control (#14 upheld),
+  and there is NO external network egress: the default outbound adapter refuses
+  to fabricate a delivery (mirrors the currency module's unconfigured provider).
+  Security hardening is strictly ADDITIVE and default-OFF: a fixed-window
+  rate limiter (`core/ratelimit.py`) wired as opt-in middleware
+  (`rate_limit_enabled=False` by default), and extended `assert_production_safe()`
+  checks (default DB credentials rejected in production). No change is made to the
+  authentication architecture (#10), tenant isolation/RLS (#9), or any existing
+  security boundary (#8); a production-hardening checklist is documented in
+  `docs/PRODUCTION_HARDENING.md`.
+- **Status:** ACCEPTED (Phase 12). Live external adapters, distributed rate
+  limiting, and any autonomous control remain deferred/gated.
