@@ -6,6 +6,14 @@ adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- CI: a `backend-migrations` job that runs `alembic upgrade head` against a real
+  PostGIS service, asserts the schema actually persisted (catches a silent
+  no-commit regression), verifies an upgrade→downgrade→upgrade round-trip, and
+  guards that every revision id fits Alembic's `version_num` VARCHAR(32). This
+  closes the gap that let two deployment-blocking migration bugs (fixed in
+  `0f940aa`) slip past the create_all-based integration tests.
+
 ## [1.0.0] — 2026-09-07
 
 Completes the locked FX→13 roadmap. See `docs/RELEASE_NOTES_1.0.0.md`.
