@@ -104,6 +104,12 @@ AI_AGENT_RUN = "ai.agent.run"
 AI_RECOMMENDATION_READ = "ai.recommendation.read"
 AI_RECOMMENDATION_DECIDE = "ai.recommendation.decide"
 
+# AgriSim + optimization + digital twins (Phase 11). Advisory simulation only —
+# no actuation/machinery-control permission exists by design (gates #13/#14).
+AGRISIM_SCENARIO_RUN = "agrisim.scenario.run"
+AGRISIM_SCENARIO_READ = "agrisim.scenario.read"
+AGRISIM_OPTIMIZE_RUN = "agrisim.optimize.run"
+
 # Full catalog seeded per environment.
 ENTERPRISE_CORE_PERMISSIONS: dict[str, str] = {
     PLATFORM_TENANT_PROVISION: "Provision new tenants (platform administrators).",
@@ -176,6 +182,9 @@ ENTERPRISE_CORE_PERMISSIONS: dict[str, str] = {
     AI_AGENT_RUN: "Run advisory AI agents.",
     AI_RECOMMENDATION_READ: "Read AI recommendations.",
     AI_RECOMMENDATION_DECIDE: "Accept or reject AI recommendations (human decision).",
+    AGRISIM_SCENARIO_RUN: "Run AgriSim simulation scenarios.",
+    AGRISIM_SCENARIO_READ: "Read AgriSim scenario runs.",
+    AGRISIM_OPTIMIZE_RUN: "Run optimization models (EOQ, allocation).",
 }
 
 # Permissions granted to the seeded TENANT_ADMIN system role (tenant-scoped;
@@ -250,6 +259,9 @@ TENANT_ADMIN_PERMISSIONS: tuple[str, ...] = (
     AI_AGENT_RUN,
     AI_RECOMMENDATION_READ,
     AI_RECOMMENDATION_DECIDE,
+    AGRISIM_SCENARIO_RUN,
+    AGRISIM_SCENARIO_READ,
+    AGRISIM_OPTIMIZE_RUN,
 )
 
 TENANT_ADMIN_ROLE_CODE = "TENANT_ADMIN"

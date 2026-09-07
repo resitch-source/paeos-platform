@@ -1,7 +1,7 @@
 # PAEOS — Project Status
 
 **Last updated:** 2026-09-06
-**Active stage:** Phase 10 — AgriIntelligence / AI Agents — IMPLEMENT / TEST
+**Active stage:** Phase 11 — AgriSim + Optimization + Digital Twins — IMPLEMENT / TEST
 **Branch:** `claude/paeos-repo-inspection-t9kf9j`
 
 ## Phase ledger
@@ -19,18 +19,19 @@
 | 7     | Processing + MES + Coconut Oil Digital Twin      | COMPLETE      |
 | 8     | Marketplace + Trading + Logistics                | COMPLETE      |
 | 9     | Training + Technical Support + Expert Marketplace| COMPLETE      |
-| 10    | AgriIntelligence / AI Agents                     | IN PROGRESS   |
-| 11    | AgriSim + Optimization + Digital Twins           | NOT STARTED   |
+| 10    | AgriIntelligence / AI Agents                     | COMPLETE      |
+| 11    | AgriSim + Optimization + Digital Twins           | IN PROGRESS   |
 | 12    | IoT + Integrations + Security + Prod Hardening   | NOT STARTED   |
 | 13    | Commercialization + Customer Deployment          | NOT STARTED   |
 
-## Current stage scope (Phase 10)
-Concrete advisory AI agents built on the Foundation AI-safety chain: agents reach
-data only through permission-checked, read-only authorized tools (never a DB
-handle), produce classified recommendations that are persisted and never
-auto-applied, and require a human accept/reject decision. No LLM/provider wired;
-no mutating or safety-critical/machinery tool registered (gates #13/#14 upheld;
-no security-boundary change, so gate #8 not triggered). Two non-geometric tables.
+## Current stage scope (Phase 11)
+Concrete simulation/optimization engines behind the Foundation SimulationEngine
+contract — EOQ and proportional allocation, alongside the registered GDD and
+mass-balance engines — each emitting a full CalculationRecord classified
+SIMULATION with caller-supplied parameters and no fabricated coefficients. Runs
+persist to a standalone non-geometric scenario_run table. Digital-twin
+projections are advisory forward runs only — no actuation and no new control path
+(gates #13/#14 upheld; gate #8 not triggered). One non-geometric table.
 
 ## Gates
 - G1 Foundation Plan Approval — **APPROVED** (2026-09-05)
@@ -45,6 +46,7 @@ no security-boundary change, so gate #8 not triggered). Two non-geometric tables
 - Phase 7 Start/Plan/Release/Commit (safety #13; #14 not implemented) — **APPROVED** → `facccf8`, pushed
 - Phase 8 Start/Plan/Release/Commit (incl. financial #12) — **APPROVED** → `a0ab126`, pushed
 - Phase 9 Start/Plan/Release/Commit (incl. financial #12) — **APPROVED** → `252072e`, pushed
-- Start Phase 10 (#17) — **APPROVED**
-- Phase 10 Plan Approval — **APPROVED**
-- Phase 10 Release / Commit — pending
+- Phase 10 Start/Plan/Release/Commit — **APPROVED** → `d9c5cff`, pushed
+- Start Phase 11 (#17) — **APPROVED**
+- Phase 11 Plan Approval — **APPROVED**
+- Phase 11 Release / Commit — pending

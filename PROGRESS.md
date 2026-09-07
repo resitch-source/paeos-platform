@@ -239,3 +239,28 @@ Released, committed (`252072e`), and pushed.
   the guarded registry with persistence, a permission-denied guard, and tenant
   isolation (integration, any PostgreSQL). 90 unit tests pass; 32 non-geometry
   integration tests pass (16 PostGIS-gated skip); ruff + mypy clean.
+
+Released, committed (`d9c5cff`), and pushed.
+
+## 2026-09-06 — Phase 11 — AgriSim + Optimization + Digital Twins
+- Optimization engines behind the Foundation SimulationEngine contract: Economic
+  Order Quantity (EOQ = √(2·D·S/H), Harris 1913) and closed-form proportional
+  allocation. Caller-supplied parameters; no fabricated coefficients.
+- Engine registry exposes GDD (Phase 3), mass-balance (Phase 7), EOQ, and
+  allocation uniformly; a scenario runner executes any named model and persists
+  the full CalculationRecord (classified SIMULATION).
+- New standalone `scenario_run` table (no cropping-cycle FK → non-geometric,
+  locally testable); optional subject_ref. Digital-twin what-if projections are
+  ADVISORY forward runs recorded as scenario_runs — no actuation, no new control
+  path (machinery control stays guard_control-gated, #14).
+- ScenarioService on the DomainService/TenantRepository pattern; REST endpoints
+  (engines, scenario run, twin project, list); permission catalog extended
+  (agrisim.*; no actuation permission by design) and granted to TENANT_ADMIN.
+  ADR-0017 records the scope.
+- Migration `0012_agrisim_optimization` (additive: 1 table + RLS, no geometry);
+  chain validated 0001→…→0012 (single head).
+- Tests: EOQ math (hand-verified) + allocation exactness + provenance +
+  registry lookup/guards (unit); EOQ/mass-balance scenario persistence, advisory
+  twin projection, and tenant isolation (integration, any PostgreSQL). 97 unit
+  tests pass; 35 non-geometry integration tests pass (16 PostGIS-gated skip);
+  ruff + mypy clean.

@@ -126,3 +126,19 @@ Decisions are immutable once recorded. Changes are appended as new entries.
   `ai_recommendation`) are tenant-owned (RLS) and non-geometric.
 - **Status:** ACCEPTED (Phase 10). LLM/model-provider wiring and any
   AI-initiated action remain deferred/gated.
+
+## ADR-0017 — AgriSim/optimization scope & advisory twins
+- **Decision:** Phase 11 adds concrete engines behind the Foundation
+  `SimulationEngine` contract: two optimizers — Economic Order Quantity
+  (`EOQ = √(2·D·S/H)`, Harris 1913) and closed-form proportional allocation —
+  plus a registry that also exposes the existing GDD (Phase 3) and mass-balance
+  (Phase 7) engines. Every run produces a full `CalculationRecord` classified
+  SIMULATION; all parameters are caller-supplied and no coefficients/rates/specs
+  are fabricated. Runs persist to a NEW standalone `scenario_run` table with no
+  cropping-cycle FK (unlike the Phase 3 `simulation_run`), so AgriSim/optimization
+  is testable on any PostgreSQL; an optional free-text `subject_ref` tags a run to
+  a subject. Digital-twin projections are ADVISORY forward runs recorded as
+  `scenario_run`s — no actuation, no new control path; machinery control stays
+  `guard_control`-gated and unimplemented (#14). No solver/LP/ML dependency.
+- **Status:** ACCEPTED (Phase 11). Heavy solvers, ML surrogates, real-time IoT
+  twin streaming, and any autonomous control remain deferred/gated.

@@ -7,6 +7,26 @@ adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- **Phase 11 — AgriSim + Optimization + Digital Twins:**
+  - Optimization engines behind the Foundation `SimulationEngine` contract:
+    Economic Order Quantity (`EOQ = √(2·D·S/H)`, Harris 1913) and closed-form
+    proportional allocation. Parameters are caller-supplied; no coefficients are
+    fabricated.
+  - An engine registry exposing GDD (Phase 3), mass-balance (Phase 7), EOQ, and
+    allocation uniformly, plus a scenario runner that executes any named model
+    and persists the full `CalculationRecord` (classified SIMULATION).
+  - New standalone `scenario_run` table (no cropping-cycle FK → non-geometric and
+    testable on any PostgreSQL), with an optional `subject_ref`. Digital-twin
+    what-if projections are ADVISORY forward runs recorded as scenario runs — no
+    actuation and no new control path (machinery control stays `guard_control`-
+    gated and unimplemented).
+  - Services + REST endpoints (list engines, run scenario, project twin, list
+    runs); permission catalog extended (`agrisim.*`; no actuation permission by
+    design) and granted to TENANT_ADMIN. ADR-0017 records the scope.
+  - Migration `0012_agrisim_optimization` (additive: 1 table + RLS, no geometry).
+  - Tests: EOQ math (hand-verified) + allocation exactness + provenance +
+    registry lookup/guards (unit); EOQ/mass-balance scenario persistence,
+    advisory twin projection, and tenant isolation (integration, any PostgreSQL).
 - **Phase 10 — AgriIntelligence / AI Agents:**
   - Instantiates the Foundation AI-safety chain (`AI → Authorized Tool → Domain
     Service → Business Validation → Transaction → Audit Log`) with concrete,

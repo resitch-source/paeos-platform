@@ -10,6 +10,7 @@ from __future__ import annotations
 from paeos_fx.agri import gis as _agri_gis  # noqa: F401
 from paeos_fx.agri import masterdata as _agri_masterdata  # noqa: F401
 from paeos_fx.agri import production as _agri_production  # noqa: F401
+from paeos_fx.agrisim import models as _agrisim_models  # noqa: F401
 from paeos_fx.ai import models as _ai_models  # noqa: F401
 from paeos_fx.experts import models as _experts_models  # noqa: F401
 from paeos_fx.fisheries import masterdata as _fish_masterdata  # noqa: F401
@@ -102,4 +103,5 @@ TENANT_OWNED_TABLES: tuple[str, ...] = (
     "engagement",
     "agent_run",
     "ai_recommendation",
+    "scenario_run",
 )
