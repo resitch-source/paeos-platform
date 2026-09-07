@@ -5,7 +5,7 @@ engagements (with an agreed fee in integer minor units). Additive and
 non-destructive; no geometry. RLS on every new table.
 
 Revision ID: 0010_training_support_experts
-Revises: 0009_marketplace_trading_logistics
+Revises: 0009_marketplace_trading
 Create Date: 2026-09-06
 """
 
@@ -16,7 +16,7 @@ from alembic import op
 from sqlalchemy.dialects.postgresql import UUID
 
 revision = "0010_training_support_experts"
-down_revision = "0009_marketplace_trading_logistics"
+down_revision = "0009_marketplace_trading"
 branch_labels = None
 depends_on = None
 

@@ -43,6 +43,10 @@ def migrated_db(engine):
     # Escape '%' so configparser interpolation does not choke on URL-encoded
     # socket hosts (e.g. host=%2Ftmp/...).
     cfg.set_main_option("sqlalchemy.url", str(engine.url).replace("%", "%%"))
+    # Start from a clean slate so a schema left by a sibling fixture (the
+    # create_all-based fixtures) does not collide with the migration run.
+    with engine.begin() as conn:
+        conn.execute(text("DROP SCHEMA IF EXISTS platform CASCADE"))
     command.upgrade(cfg, "head")
 
     with engine.begin() as conn:
@@ -66,6 +70,9 @@ def migrated_db(engine):
         )
         conn.execute(text(f"REVOKE USAGE ON SCHEMA platform FROM {APP_ROLE}"))
         conn.execute(text(f"DROP ROLE IF EXISTS {APP_ROLE}"))
+        # Drop the migrated schema so sibling fixtures start clean (mirrors the
+        # create_all-based fixtures, which drop the schema on teardown).
+        conn.execute(text("DROP SCHEMA IF EXISTS platform CASCADE"))
 
 
 def _app_engine(admin_engine):

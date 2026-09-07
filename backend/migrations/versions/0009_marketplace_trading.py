@@ -4,7 +4,7 @@ Adds customers, marketplace listings, sales orders + lines (with monetary
 pricing in integer minor units), and shipments. Additive and non-destructive;
 no geometry. RLS on every new table.
 
-Revision ID: 0009_marketplace_trading_logistics
+Revision ID: 0009_marketplace_trading
 Revises: 0008_processing_mes
 Create Date: 2026-09-05
 """
@@ -15,7 +15,7 @@ import sqlalchemy as sa
 from alembic import op
 from sqlalchemy.dialects.postgresql import UUID
 
-revision = "0009_marketplace_trading_logistics"
+revision = "0009_marketplace_trading"
 down_revision = "0008_processing_mes"
 branch_labels = None
 depends_on = None
