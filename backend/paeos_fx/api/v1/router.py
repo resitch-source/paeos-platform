@@ -24,6 +24,7 @@ from paeos_fx.api.v1 import (
     fisheries_masterdata,
     harvests,
     health,
+    info,
     integration,
     inventory,
     livestock_masterdata,
@@ -38,6 +39,7 @@ from paeos_fx.api.v1 import (
 
 api_router = APIRouter()
 api_router.include_router(health.router)
+api_router.include_router(info.router)
 api_router.include_router(auth.router)
 api_router.include_router(admin_tenants.router)
 api_router.include_router(users.router)
@@ -70,6 +72,6 @@ async def meta() -> dict:
         "product": "PAEOS",
         "component": "PAEOS-FX Foundation",
         "version": __version__,
-        "active_phase": "PHASE_12_IOT_INTEGRATIONS_SECURITY",
-        "domain_phases_started": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        "active_phase": "PHASE_13_COMMERCIALIZATION",
+        "domain_phases_started": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
     }

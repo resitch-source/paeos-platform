@@ -6,7 +6,24 @@ adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.0.0] — 2026-09-07
+
+Completes the locked FX→13 roadmap. See `docs/RELEASE_NOTES_1.0.0.md`.
+
 ### Added
+- **Phase 13 — Commercialization + Customer Deployment:**
+  - Release manifest (`paeos_fx/platform/release.py`) describing the completed
+    phases and capability bundles, and a public build-info endpoint
+    `GET /api/v1/info` (version, environment, build SHA from `PAEOS_BUILD_SHA`
+    defaulting to `unknown`, phase manifest, capability bundles). Exposes no
+    tenant data.
+  - Version bumped to `1.0.0`; `/meta` reports `PHASE_13_COMMERCIALIZATION`.
+  - Deployment/commercialization docs: `DEPLOYMENT_RUNBOOK.md`,
+    `GO_LIVE_CHECKLIST.md`, `RELEASE_NOTES_1.0.0.md`, and `COMMERCIALIZATION.md`
+    (capability bundles only — pricing left as a deferred business decision, no
+    figures fabricated). ADR-0019 records the release posture.
+  - Tests: release manifest consistency, build-SHA env handling, and the info
+    endpoint (unit). No new tables or migration; head stays at `0013`.
 - **Phase 12 — IoT + Integrations + Security + Production Hardening:**
   - Concrete integration framework behind the Foundation contract: an idempotent
     `inbound_message` ledger (unique on tenant + system + idempotency_key) so

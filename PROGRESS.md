@@ -290,3 +290,23 @@ Released, committed (`2c963bd`), and pushed.
   duplicate-key no-op, and tenant isolation (integration, any PostgreSQL). 103
   unit tests pass; 38 non-geometry integration tests pass (16 PostGIS-gated
   skip); ruff + mypy clean.
+
+Released, committed (`bcee21f`), and pushed.
+
+## 2026-09-07 — Phase 13 — Commercialization + Customer Deployment (final phase)
+- Release manifest (`platform/release.py`) describing the completed FX→13 phases
+  and capability bundles; public build-info endpoint `GET /api/v1/info` (version,
+  environment, build SHA from PAEOS_BUILD_SHA defaulting to "unknown", phase
+  manifest, capability bundles) — exposes no tenant data.
+- Version bumped to 1.0.0; `/meta` reports PHASE_13_COMMERCIALIZATION; CHANGELOG
+  1.0.0 release cut.
+- Deployment/commercialization docs: DEPLOYMENT_RUNBOOK, GO_LIVE_CHECKLIST,
+  RELEASE_NOTES_1.0.0, COMMERCIALIZATION (capability bundles only — pricing left
+  a deferred business decision, no figures fabricated). ADR-0019 records the
+  posture. No production deploy/migration executed (gates #6/#7 remain gated).
+- No new DB tables, migration, or permissions; head stays at 0013.
+- Tests: release-manifest consistency, build-SHA env handling, and the info
+  endpoint (unit). 109 unit tests pass; 38 non-geometry integration tests pass
+  (16 PostGIS-gated skip); ruff + mypy clean.
+
+**Roadmap complete: PAEOS-FX Foundation → Phase 13 all delivered.**

@@ -1,7 +1,7 @@
 # PAEOS — Project Status
 
-**Last updated:** 2026-09-06
-**Active stage:** Phase 12 — IoT + Integrations + Security + Prod Hardening — IMPLEMENT / TEST
+**Last updated:** 2026-09-07
+**Active stage:** Phase 13 — Commercialization + Customer Deployment — IMPLEMENT / TEST
 **Branch:** `claude/paeos-repo-inspection-t9kf9j`
 
 ## Phase ledger
@@ -21,18 +21,17 @@
 | 9     | Training + Technical Support + Expert Marketplace| COMPLETE      |
 | 10    | AgriIntelligence / AI Agents                     | COMPLETE      |
 | 11    | AgriSim + Optimization + Digital Twins           | COMPLETE      |
-| 12    | IoT + Integrations + Security + Prod Hardening   | IN PROGRESS   |
-| 13    | Commercialization + Customer Deployment          | NOT STARTED   |
+| 12    | IoT + Integrations + Security + Prod Hardening   | COMPLETE      |
+| 13    | Commercialization + Customer Deployment          | IN PROGRESS   |
 
-## Current stage scope (Phase 12)
-Concrete integration framework behind the Foundation contract: an idempotent
-inbound-message ledger routing external messages (e.g. IoT telemetry) into
-existing domain services — records only, advisory, no actuation. The default
-outbound adapter refuses to fabricate a delivery (no external egress). Additive,
-default-OFF security hardening: an opt-in fixed-window rate limiter and extended
-production-safety assertions, plus a production-hardening checklist. NO change to
-authentication (#10), tenant isolation/RLS (#9), or any existing security
-boundary (#8). One non-geometric table.
+## Current stage scope (Phase 13 — final)
+Release readiness and customer-deployment enablement: a release manifest and a
+public build-info endpoint (`/api/v1/info`), a version bump to 1.0.0, and
+deployment/commercialization docs (runbook, go-live checklist, release notes,
+commercialization capability bundles). Pricing is left a deferred business
+decision (no figures fabricated; no financial logic, #12 not triggered). No new
+domain tables, migration, or permissions; no production deploy/migration executed
+(gates #6/#7 remain gated). Closes the locked FX→13 roadmap.
 
 ## Gates
 - G1 Foundation Plan Approval — **APPROVED** (2026-09-05)
@@ -49,6 +48,7 @@ boundary (#8). One non-geometric table.
 - Phase 9 Start/Plan/Release/Commit (incl. financial #12) — **APPROVED** → `252072e`, pushed
 - Phase 10 Start/Plan/Release/Commit — **APPROVED** → `d9c5cff`, pushed
 - Phase 11 Start/Plan/Release/Commit — **APPROVED** → `2c963bd`, pushed
-- Start Phase 12 (#17) — **APPROVED**
-- Phase 12 Plan Approval (additive hardening; no boundary change, #8 not triggered) — **APPROVED**
-- Phase 12 Release / Commit — pending
+- Phase 12 Start/Plan/Release/Commit (additive hardening; no boundary change, #8 not triggered) — **APPROVED** → `bcee21f`, pushed
+- Start Phase 13 (#17) — **APPROVED**
+- Phase 13 Plan Approval — **APPROVED**
+- Phase 13 Release / Commit — pending

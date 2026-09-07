@@ -161,3 +161,19 @@ Decisions are immutable once recorded. Changes are appended as new entries.
   `docs/PRODUCTION_HARDENING.md`.
 - **Status:** ACCEPTED (Phase 12). Live external adapters, distributed rate
   limiting, and any autonomous control remain deferred/gated.
+
+## ADR-0019 — Release posture & commercialization (v1.0.0)
+- **Decision:** Phase 13 closes the locked roadmap and cuts release `1.0.0`. It
+  adds a factual release manifest (`platform/release.py`) and a public
+  `GET /api/v1/info` endpoint (version, environment, build SHA from
+  `PAEOS_BUILD_SHA` defaulting to `"unknown"`, completed-phase manifest,
+  capability bundles) that exposes no tenant data or secrets. Commercialization
+  is documented as **capability bundles** only: pricing, editions' prices, and
+  contract terms are explicit business decisions left UNDECIDED — no figures are
+  fabricated (so no financial logic is introduced, gate #12 not triggered).
+  Deployment is documented (`DEPLOYMENT_RUNBOOK.md`, `GO_LIVE_CHECKLIST.md`) but
+  **no production deployment or production database migration is executed** —
+  those remain gated (#6/#7). No new domain tables, migration, or permissions;
+  the migration head stays at `0013`.
+- **Status:** ACCEPTED (Phase 13). The FX→13 roadmap is complete; production
+  cut-over and any billing implementation remain gated future work.

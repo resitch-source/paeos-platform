@@ -5,4 +5,4 @@ contain domain logic for any Phase 0-13 feature. Future-phase dependencies are
 represented by minimum stable interfaces under ``paeos_fx.interfaces``.
 """
 
-__version__ = "0.1.0"
+__version__ = "1.0.0"
