@@ -40,9 +40,11 @@ def migrated_db(engine):
 
     cfg = Config("alembic.ini")
     cfg.set_main_option("script_location", "migrations")
-    # Escape '%' so configparser interpolation does not choke on URL-encoded
-    # socket hosts (e.g. host=%2Ftmp/...).
-    cfg.set_main_option("sqlalchemy.url", str(engine.url).replace("%", "%%"))
+    # Render with the real password (str(engine.url) masks it as '***', which
+    # would fail password auth) and escape '%' so configparser interpolation does
+    # not choke on URL-encoded socket hosts (e.g. host=%2Ftmp/...).
+    url = engine.url.render_as_string(hide_password=False).replace("%", "%%")
+    cfg.set_main_option("sqlalchemy.url", url)
     # Start from a clean slate so a schema left by a sibling fixture (the
     # create_all-based fixtures) does not collide with the migration run.
     with engine.begin() as conn:
