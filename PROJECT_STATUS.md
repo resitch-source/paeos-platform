@@ -1,7 +1,7 @@
 # PAEOS — Project Status
 
 **Last updated:** 2026-09-06
-**Active stage:** Phase 9 — Training + Technical Support + Expert Marketplace — IMPLEMENT / TEST
+**Active stage:** Phase 10 — AgriIntelligence / AI Agents — IMPLEMENT / TEST
 **Branch:** `claude/paeos-repo-inspection-t9kf9j`
 
 ## Phase ledger
@@ -18,19 +18,19 @@
 | 6     | Inventory + Procurement + Warehouse              | COMPLETE      |
 | 7     | Processing + MES + Coconut Oil Digital Twin      | COMPLETE      |
 | 8     | Marketplace + Trading + Logistics                | COMPLETE      |
-| 9     | Training + Technical Support + Expert Marketplace| IN PROGRESS   |
-| 10    | AgriIntelligence / AI Agents                     | NOT STARTED   |
+| 9     | Training + Technical Support + Expert Marketplace| COMPLETE      |
+| 10    | AgriIntelligence / AI Agents                     | IN PROGRESS   |
 | 11    | AgriSim + Optimization + Digital Twins           | NOT STARTED   |
 | 12    | IoT + Integrations + Security + Prod Hardening   | NOT STARTED   |
 | 13    | Commercialization + Customer Deployment          | NOT STARTED   |
 
-## Current stage scope (Phase 9)
-Training courses + learner enrollments (lifecycle), technical-support tickets
-(lifecycle + comments), and an expert directory + client engagements with an
-agreed fee via Money. Fees/rates are financial logic approved under gate #12
-(exact Money amounts only — no payments/AR/GL/tax/settlement). No scoring or
-certificate engine, no SLA automation, no external channels; all six tables are
-non-geometric.
+## Current stage scope (Phase 10)
+Concrete advisory AI agents built on the Foundation AI-safety chain: agents reach
+data only through permission-checked, read-only authorized tools (never a DB
+handle), produce classified recommendations that are persisted and never
+auto-applied, and require a human accept/reject decision. No LLM/provider wired;
+no mutating or safety-critical/machinery tool registered (gates #13/#14 upheld;
+no security-boundary change, so gate #8 not triggered). Two non-geometric tables.
 
 ## Gates
 - G1 Foundation Plan Approval — **APPROVED** (2026-09-05)
@@ -44,6 +44,7 @@ non-geometric.
 - Phase 6 Start/Plan/Release/Commit (incl. financial #12) — **APPROVED** → `9182777`, pushed
 - Phase 7 Start/Plan/Release/Commit (safety #13; #14 not implemented) — **APPROVED** → `facccf8`, pushed
 - Phase 8 Start/Plan/Release/Commit (incl. financial #12) — **APPROVED** → `a0ab126`, pushed
-- Start Phase 9 (#17) — **APPROVED**
-- Phase 9 Plan Approval (incl. financial #12) — **APPROVED**
-- Phase 9 Release / Commit — pending
+- Phase 9 Start/Plan/Release/Commit (incl. financial #12) — **APPROVED** → `252072e`, pushed
+- Start Phase 10 (#17) — **APPROVED**
+- Phase 10 Plan Approval — **APPROVED**
+- Phase 10 Release / Commit — pending

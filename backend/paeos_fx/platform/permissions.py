@@ -98,6 +98,12 @@ EXPERTS_PROFILE_MANAGE = "experts.profile.manage"
 EXPERTS_ENGAGEMENT_READ = "experts.engagement.read"
 EXPERTS_ENGAGEMENT_WRITE = "experts.engagement.write"
 
+# AgriIntelligence / AI agents (Phase 10). Advisory only — no mutating or
+# machinery-control AI permission exists by design (gates #13/#14).
+AI_AGENT_RUN = "ai.agent.run"
+AI_RECOMMENDATION_READ = "ai.recommendation.read"
+AI_RECOMMENDATION_DECIDE = "ai.recommendation.decide"
+
 # Full catalog seeded per environment.
 ENTERPRISE_CORE_PERMISSIONS: dict[str, str] = {
     PLATFORM_TENANT_PROVISION: "Provision new tenants (platform administrators).",
@@ -167,6 +173,9 @@ ENTERPRISE_CORE_PERMISSIONS: dict[str, str] = {
     EXPERTS_PROFILE_MANAGE: "Create and modify expert profiles.",
     EXPERTS_ENGAGEMENT_READ: "Read expert engagements.",
     EXPERTS_ENGAGEMENT_WRITE: "Create and advance expert engagements.",
+    AI_AGENT_RUN: "Run advisory AI agents.",
+    AI_RECOMMENDATION_READ: "Read AI recommendations.",
+    AI_RECOMMENDATION_DECIDE: "Accept or reject AI recommendations (human decision).",
 }
 
 # Permissions granted to the seeded TENANT_ADMIN system role (tenant-scoped;
@@ -238,6 +247,9 @@ TENANT_ADMIN_PERMISSIONS: tuple[str, ...] = (
     EXPERTS_PROFILE_MANAGE,
     EXPERTS_ENGAGEMENT_READ,
     EXPERTS_ENGAGEMENT_WRITE,
+    AI_AGENT_RUN,
+    AI_RECOMMENDATION_READ,
+    AI_RECOMMENDATION_DECIDE,
 )
 
 TENANT_ADMIN_ROLE_CODE = "TENANT_ADMIN"

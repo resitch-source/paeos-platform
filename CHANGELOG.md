@@ -7,6 +7,29 @@ adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- **Phase 10 — AgriIntelligence / AI Agents:**
+  - Instantiates the Foundation AI-safety chain (`AI → Authorized Tool → Domain
+    Service → Business Validation → Transaction → Audit Log`) with concrete,
+    tenant-scoped agents. Agents reach data ONLY through permission-checked,
+    read-only `AuthorizedTool`s dispatched by the Foundation `ToolRegistry`; the
+    AI never receives a database handle. No mutating or safety-critical/machinery
+    tool is registered (gates #13/#14 upheld) and no security boundary changes.
+  - Deterministic advisory agents (low-stock, open-orders) over authorized-tool
+    outputs; each emits `AIRecommendation`s that are classified, carry
+    assumptions, and set `requires_human_approval=True`. No LLM/model provider is
+    wired and nothing is fabricated.
+  - Recommendations are persisted (`agent_run`, `ai_recommendation`) with a
+    human-decision lifecycle (proposed→accepted/rejected/superseded). Accepting a
+    recommendation records a decision and executes nothing — the AI flow mutates
+    no domain data.
+  - Services + REST endpoints (run agent, list recommendations, decide);
+    permission catalog extended (`ai.*`; no mutating/actuating AI permission by
+    design) and granted to TENANT_ADMIN. ADR-0016 records the scope.
+  - Migration `0011_agri_intelligence` (additive: 2 tables + RLS, no geometry).
+  - Tests: agent logic + recommendation lifecycle + a safety assertion that the
+    registry exposes no mutating/safety-critical tool (unit); agent end-to-end
+    via the guarded registry with persistence, a permission-denied guard, and
+    tenant isolation (integration, any PostgreSQL).
 - **Phase 9 — Training + Technical Support + Expert Marketplace:**
   - Training: a course catalog and learner enrollments with a state-machine
     lifecycle (enrolled→in_progress→completed/withdrawn). Completion is a

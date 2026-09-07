@@ -214,3 +214,28 @@ Released, committed (`a0ab126`), and pushed.
   tenant isolation — all validated on PostgreSQL 16 (non-geometry). 84 unit
   tests pass; 29 non-geometry integration tests pass (16 PostGIS-gated skip);
   ruff + mypy clean.
+
+Released, committed (`252072e`), and pushed.
+
+## 2026-09-06 — Phase 10 — AgriIntelligence / AI Agents
+- Instantiates (does not alter) the Foundation AI-safety chain: concrete agents
+  reach data ONLY through permission-checked, read-only AuthorizedTools in the
+  ToolRegistry; the AI never gets a DB handle. No mutating or safety-critical
+  tool is registered (gates #13/#14 upheld; no security boundary changed).
+- Deterministic advisory agents (low-stock, open-orders) over authorized-tool
+  outputs; each emits classified AIRecommendations with assumptions and
+  requires_human_approval — no LLM/provider wired, nothing fabricated.
+- Recommendations persisted (agent_run, ai_recommendation) with a human-decision
+  lifecycle (proposed→accepted/rejected/superseded). Accepting records a
+  decision and executes nothing — no domain data is mutated by the AI flow.
+- AgentService on the DomainService/TenantRepository pattern; REST endpoints
+  (run agent, list recommendations, decide); permission catalog extended (ai.*,
+  no mutating/actuating AI permission by design) and granted to TENANT_ADMIN.
+  ADR-0016 records the scope.
+- Migration `0011_agri_intelligence` (additive: 2 tables + RLS, no geometry);
+  chain validated 0001→…→0011 (single head).
+- Tests: agent logic + recommendation lifecycle + a safety assertion that the
+  registry exposes no mutating/safety-critical tool (unit); agent end-to-end via
+  the guarded registry with persistence, a permission-denied guard, and tenant
+  isolation (integration, any PostgreSQL). 90 unit tests pass; 32 non-geometry
+  integration tests pass (16 PostGIS-gated skip); ruff + mypy clean.

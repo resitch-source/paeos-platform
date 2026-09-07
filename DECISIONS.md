@@ -109,3 +109,20 @@ Decisions are immutable once recorded. Changes are appended as new entries.
 - **Status:** ACCEPTED (Phase 9). Financial transaction logic (fees/rates)
   approved under gate #12 for this bounded scope; broader finance remains
   deferred.
+
+## ADR-0016 — AI-agent advisory scope & safety-chain instantiation
+- **Decision:** Phase 10 instantiates (does not alter) the Foundation AI-safety
+  chain `AI → Authorized Tool → Domain Service → Business Validation →
+  Transaction → Audit Log`. Concrete agents reach data ONLY through
+  permission-checked, READ-ONLY `AuthorizedTool`s dispatched by the Foundation
+  `ToolRegistry`; the AI is never given a database handle. Agents are
+  deterministic (no LLM/model provider is wired) and produce advisory
+  `AiRecommendation`s that are persisted, classified, carry assumptions, and set
+  `requires_human_approval=True`. Recommendations are NEVER auto-applied:
+  accepting one records a human decision and executes nothing, mutating no domain
+  data. No mutating or safety-critical/machinery tool is registered, so the AI
+  cannot change state or actuate equipment (gates #13/#14 upheld; no security
+  boundary changed, so gate #8 is not triggered). Both tables (`agent_run`,
+  `ai_recommendation`) are tenant-owned (RLS) and non-geometric.
+- **Status:** ACCEPTED (Phase 10). LLM/model-provider wiring and any
+  AI-initiated action remain deferred/gated.
