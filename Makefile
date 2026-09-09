@@ -36,6 +36,10 @@ typecheck: ## Run mypy
 migrate: ## Apply database migrations (requires a live PostgreSQL+PostGIS)
 	cd $(BACKEND) && .venv/bin/alembic upgrade head
 
+.PHONY: seed
+seed: ## Seed a demo tenant + admin for browser testing (requires a migrated DB)
+	cd $(BACKEND) && .venv/bin/python -m scripts.seed_demo
+
 .PHONY: run
 run: ## Run the API locally
 	cd $(BACKEND) && .venv/bin/uvicorn paeos_fx.main:app --reload
@@ -47,6 +51,10 @@ up: ## Start the full dev stack in Docker
 .PHONY: down
 down: ## Stop the dev stack
 	cd infra && docker compose down
+
+.PHONY: precommit
+precommit: ## Run all pre-commit hooks across the repo
+	pre-commit run --all-files
 
 .PHONY: check
 check: lint typecheck test ## Run lint + typecheck + tests

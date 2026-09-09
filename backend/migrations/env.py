@@ -20,8 +20,11 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-# Inject the runtime database URL.
-config.set_main_option("sqlalchemy.url", get_settings().database_url)
+# Inject the runtime database URL from application settings, but respect a URL a
+# caller already configured (e.g. a test fixture or programmatic invocation) so
+# migrations can target an explicit database rather than always the app default.
+if not config.get_main_option("sqlalchemy.url"):
+    config.set_main_option("sqlalchemy.url", get_settings().database_url)
 
 target_metadata = metadata
 
@@ -55,10 +58,13 @@ def run_migrations_online() -> None:
     )
     with connectable.connect() as connection:
         # The platform schema must exist before Alembic creates its version
-        # table there. This is idempotent and non-destructive.
+        # table there. This is idempotent and non-destructive. Commit it so the
+        # implicit transaction it opens does not swallow Alembic's own
+        # transaction (which would silently roll back every migration).
         connection.exec_driver_sql(
             f"CREATE SCHEMA IF NOT EXISTS {PLATFORM_SCHEMA}"
         )
+        connection.commit()
         context.configure(
             connection=connection,
             target_metadata=target_metadata,

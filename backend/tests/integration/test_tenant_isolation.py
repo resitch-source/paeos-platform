@@ -25,13 +25,30 @@ APP_ROLE_PW = "rls_test_pw"
 
 @pytest.fixture()
 def migrated_db(engine):
-    """Apply the baseline migration and provision a non-superuser app role."""
+    """Apply the baseline migration and provision a non-superuser app role.
+
+    Requires PostGIS (the baseline migration enables it); skipped otherwise.
+    """
     from alembic import command
     from alembic.config import Config
 
+    try:
+        with engine.connect() as conn:
+            conn.execute(text("SELECT postgis_version()"))
+    except Exception:
+        pytest.skip("PostGIS not available on the target database.")
+
     cfg = Config("alembic.ini")
     cfg.set_main_option("script_location", "migrations")
-    cfg.set_main_option("sqlalchemy.url", str(engine.url))
+    # Render with the real password (str(engine.url) masks it as '***', which
+    # would fail password auth) and escape '%' so configparser interpolation does
+    # not choke on URL-encoded socket hosts (e.g. host=%2Ftmp/...).
+    url = engine.url.render_as_string(hide_password=False).replace("%", "%%")
+    cfg.set_main_option("sqlalchemy.url", url)
+    # Start from a clean slate so a schema left by a sibling fixture (the
+    # create_all-based fixtures) does not collide with the migration run.
+    with engine.begin() as conn:
+        conn.execute(text("DROP SCHEMA IF EXISTS platform CASCADE"))
     command.upgrade(cfg, "head")
 
     with engine.begin() as conn:
@@ -55,6 +72,9 @@ def migrated_db(engine):
         )
         conn.execute(text(f"REVOKE USAGE ON SCHEMA platform FROM {APP_ROLE}"))
         conn.execute(text(f"DROP ROLE IF EXISTS {APP_ROLE}"))
+        # Drop the migrated schema so sibling fixtures start clean (mirrors the
+        # create_all-based fixtures, which drop the schema on teardown).
+        conn.execute(text("DROP SCHEMA IF EXISTS platform CASCADE"))
 
 
 def _app_engine(admin_engine):

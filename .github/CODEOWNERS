@@ -1,0 +1,29 @@
+# PAEOS code ownership.
+#
+# ASSUMPTION: owner handles below are placeholders pending real GitHub
+# usernames/teams. Replace @paeos-maintainers with actual owners before relying
+# on required-review enforcement.
+
+# Default owners for everything.
+*                       @paeos-maintainers
+
+# Governance & controller rules.
+/CLAUDE.md              @paeos-maintainers
+/DECISIONS.md           @paeos-maintainers
+/docs/                  @paeos-maintainers
+
+# Backend platform framework.
+/backend/               @paeos-maintainers
+
+# Security-sensitive areas (auth, tenancy, RLS) — extra scrutiny.
+/backend/paeos_fx/core/security.py        @paeos-maintainers
+/backend/paeos_fx/platform/tenancy.py     @paeos-maintainers
+/backend/paeos_fx/platform/iam.py         @paeos-maintainers
+/backend/migrations/                      @paeos-maintainers
+
+# Frontend.
+/frontend/              @paeos-maintainers
+
+# CI/CD & infrastructure.
+/.github/               @paeos-maintainers
+/infra/                 @paeos-maintainers
