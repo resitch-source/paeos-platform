@@ -15,6 +15,7 @@ RUN apt-get update \
 COPY pyproject.toml README.md ./
 COPY paeos_fx ./paeos_fx
 COPY migrations ./migrations
+COPY scripts ./scripts
 COPY alembic.ini ./
 
 RUN pip install --upgrade pip && pip install ".[jobs]"

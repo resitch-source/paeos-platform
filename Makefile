@@ -36,6 +36,10 @@ typecheck: ## Run mypy
 migrate: ## Apply database migrations (requires a live PostgreSQL+PostGIS)
 	cd $(BACKEND) && .venv/bin/alembic upgrade head
 
+.PHONY: seed
+seed: ## Seed a demo tenant + admin for browser testing (requires a migrated DB)
+	cd $(BACKEND) && .venv/bin/python -m scripts.seed_demo
+
 .PHONY: run
 run: ## Run the API locally
 	cd $(BACKEND) && .venv/bin/uvicorn paeos_fx.main:app --reload
