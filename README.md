@@ -57,6 +57,7 @@ docs/         Architecture, deployment, testing, and release documentation
 ## Quick start (run & test in a browser)
 
 Requires Docker + Docker Compose. Full instructions: `docs/TESTING.md`.
+On Windows, follow the step-by-step guide in `docs/RUN_LOCAL_WINDOWS.md`.
 
 ```bash
 # 1. Backend + PostgreSQL/PostGIS + Redis (runs migrations on start)
